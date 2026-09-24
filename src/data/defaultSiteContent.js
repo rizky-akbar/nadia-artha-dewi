@@ -118,7 +118,7 @@ export const defaultSiteContent = {
       badge: '★ Featured Landmark Research • Full Abstract',
       title: 'Google Scholar Hero Spotlight',
       subTitle: 'Peer-reviewed clinical trials, surgical innovations, and medical textbooks with complete scientific abstracts.',
-      featuredPubIds: ['pub-3', 'pub-2', 'pub-5', 'pub-9', 'pub-11', 'pub-17'],
+      featuredPubIds: ['pub-3', 'pub-2', 'pub-5', 'pub-9', 'pub-11', 'pub-18', 'pub-20'],
       defaultPubId: 'pub-3',
     },
     publications: publicationsData,

@@ -7,7 +7,7 @@ export default function ScholarFeed() {
   const { siteContent } = useSite();
   const scholarData = siteContent?.scholar || {};
   const publications = scholarData.publications || [];
-  const initialStats = scholarData.stats || { totalCitations: 385, hIndex: 12, i10Index: 15, totalPublications: 36, timeframe: '2015 – 2026' };
+  const initialStats = scholarData.stats || { totalCitations: 490, hIndex: 14, i10Index: 18, totalPublications: 36, timeframe: '2005 – 2026' };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -21,7 +21,7 @@ export default function ScholarFeed() {
     badge: '★ Featured Landmark Research • Full Abstract',
     title: 'Google Scholar Hero Spotlight',
     subTitle: 'Peer-reviewed clinical trials, surgical innovations, and medical textbooks with complete scientific abstracts.',
-    featuredPubIds: ['pub-3', 'pub-2', 'pub-5', 'pub-9', 'pub-11', 'pub-17'],
+    featuredPubIds: ['pub-3', 'pub-2', 'pub-5', 'pub-9', 'pub-11', 'pub-18', 'pub-20'],
     defaultPubId: 'pub-3',
   };
 
@@ -130,7 +130,7 @@ export default function ScholarFeed() {
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-medium">
                 <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                <span>2015 – 2026 (Present)</span>
+                <span>2005 – 2026 (Present)</span>
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-serif tracking-tight">
@@ -171,7 +171,7 @@ export default function ScholarFeed() {
                 +71 latest
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">Google Scholar (2015–2026)</p>
+            <p className="text-[11px] text-slate-400 mt-1">Google Scholar (2005–2026)</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-700/50 transition-all">
@@ -187,7 +187,7 @@ export default function ScholarFeed() {
             <div className="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight font-serif">
               {stats.i10Index}
             </div>
-            <p className="text-[11px] text-cyan-400 mt-1">15 Papers with ≥ 10 citations</p>
+            <p className="text-[11px] text-cyan-400 mt-1">18 Papers with ≥ 10 citations</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-700/50 transition-all">

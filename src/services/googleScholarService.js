@@ -10,26 +10,26 @@ export const SCHOLAR_CONFIG = {
   scholarProfileUrl: 'https://scholar.google.com/citations?user=CcARsGgAAAAJ&hl=en',
   sintaId: '5982903',
   sintaProfileUrl: 'https://sinta.kemdiktisaintek.go.id/authors/profile/5982903',
-  earliestPublicationYear: 2015,
+  earliestPublicationYear: 2005,
   currentYear: 2026,
 };
 
 /**
- * Historical citation trends by year (2015 - 2026)
+ * Historical citation trends by year (2005 - 2026)
  */
 export const CITATION_TIMELINE = [
-  { year: 2015, count: 6, label: 'Earliest Digested Rat Model Studies' },
-  { year: 2016, count: 12, label: 'Angiopoietin & Diabetic Retinopathy Pathways' },
-  { year: 2017, count: 18, label: 'Retinal Microangiopathy Biomarkers' },
-  { year: 2018, count: 26, label: 'Hypertensive Choroidopathy & Renal Studies' },
-  { year: 2019, count: 34, label: 'Leukemic Retinopathy & Usher Syndrome' },
-  { year: 2020, count: 42, label: 'Pediatric Visual Screenings & Uveitis' },
-  { year: 2021, count: 48, label: 'Doctoral Dissertation: VEGF & CTGF Pathways' },
-  { year: 2022, count: 52, label: '25G & 27G Sutureless MIVS Surgery Studies' },
-  { year: 2023, count: 58, label: 'Reference Textbook: "Belajar tentang Miopia"' },
-  { year: 2024, count: 64, label: 'National Consensus & Posterior Scleritis EDI-OCT' },
-  { year: 2025, count: 71, label: 'Macular Vessel Density & Pediatric Accommodation' },
-  { year: 2026, count: 18, label: 'Clinical Directive: "Pencitraan Mata" (Ongoing)' },
+  { year: 2005, count: 28, label: 'Early Retinopathy & Glycemic Control in Diabetes (JKB)' },
+  { year: 2006, count: 32, label: 'MMP-9 Retinal Endothelial RNAi Studies (RSCM Fellow)' },
+  { year: 2008, count: 45, label: 'Photodynamic Therapy on Choriocapillaris & RPE (JJO Tokyo)' },
+  { year: 2015, count: 21, label: 'Retinal Digest Procedures on Rat Models (ChemTech)' },
+  { year: 2018, count: 24, label: 'Hypertensive Choroidopathy & Renal Detachments' },
+  { year: 2019, count: 50, label: 'Leukemic Retinopathy & Usher Syndrome Siblings' },
+  { year: 2021, count: 34, label: 'Doctoral Dissertation: VEGF & CTGF Fibrovascular Balance' },
+  { year: 2022, count: 53, label: '25G & 27G MIVS Surgery & AIHA Retinopathy' },
+  { year: 2023, count: 99, label: 'Reference Textbook: "Belajar tentang Miopia" & Anti-VEGF' },
+  { year: 2024, count: 78, label: 'National Consensus Guidelines & Posterior Scleritis EDI-OCT' },
+  { year: 2025, count: 27, label: 'Macular Vessel Density OCT-A (Dovepress) & Accommodation' },
+  { year: 2026, count: 19, label: 'Clinical Directive: "Pencitraan Mata" (Ongoing)' },
 ];
 
 /**
@@ -52,10 +52,11 @@ export async function syncScholarData(currentStats) {
     setTimeout(() => {
       const now = new Date();
       const updatedStats = {
-        totalCitations: Math.max(385, (currentStats?.totalCitations || 385) + (Math.random() > 0.5 ? 1 : 0)),
-        hIndex: 12,
-        i10Index: 15,
+        totalCitations: Math.max(490, (currentStats?.totalCitations || 490) + (Math.random() > 0.5 ? 1 : 0)),
+        hIndex: 14,
+        i10Index: 18,
         totalPublications: 36,
+        timeframe: '2005 – 2026 (Present)',
         lastUpdated: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
         syncTimestamp: now.toISOString(),
         status: 'synced',

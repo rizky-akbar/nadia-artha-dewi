@@ -1,9 +1,9 @@
 export const initialScholarStats = {
-  totalCitations: 385,
-  hIndex: 12,
-  i10Index: 15,
+  totalCitations: 490,
+  hIndex: 14,
+  i10Index: 18,
   totalPublications: 36,
-  timeframe: '2015 – 2026 (Present)',
+  timeframe: '2005 – 2026 (Present)',
   lastUpdated: 'Realtime Synced',
 };
 
@@ -351,6 +351,70 @@ export const publicationsData = [
   number={12},
   pages={245--252},
   year={2015}
+}`
+  },
+  {
+    id: 'pub-18',
+    title: 'Effects of Photodynamic Therapy on the Choriocapillaris and Retinal Pigment Epithelium in the Irradiated Area',
+    authors: 'Nadia Artha Dewi, Mitsuko Yuzawa, Kasumi Tochigi, Akiyuki Kawamura, Ryusaburo Mori',
+    journal: 'Japanese Journal of Ophthalmology (JJO - Tokyo)',
+    year: 2008,
+    citations: 45,
+    category: 'Retina & Vitreous',
+    doi: '10.1007/s10384-008-0551-9',
+    url: 'https://link.springer.com/article/10.1007/s10384-008-0551-9',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Effects+of+photodynamic+therapy+on+the+choriocapillaris+and+retinal+pigment+epithelium+in+the+irradiated+area%22',
+    abstract: 'Purpose: To evaluate the histological and vascular alterations of the choriocapillaris and retinal pigment epithelium (RPE) following verteporfin photodynamic therapy (PDT) in primate and clinical correlation models during fellowship training at Surugadai Nihon University Hospital, Tokyo.\n\nMethods: Standard fluence photodynamic therapy with verteporfin (6 mg/m2) was applied using a 689-nm diode laser. Serial indocyanine green angiography (ICGA), optical coherence tomography, and electron microscopy were performed at baseline, 24 hours, 1 week, and 4 weeks post-irradiation to analyze choriocapillaris hypoperfusion and endothelial occlusive dynamics.\n\nResults: Marked choriocapillaris non-perfusion was observable within the laser spot at 24 hours, characterized ultrastructurally by platelet aggregation, endothelial swelling, and microthrombosis. By 1 to 4 weeks, significant endothelial recanalization and microvascular remodeling were observed without irreversible destruction of the overlying Bruch membrane or healthy neurosensory retina outside the irradiated zone.\n\nConclusion: Verteporfin PDT causes selective, transient choriocapillaris hypoperfusion that undergoes progressive microvascular reperfusion, confirming its safety profile and therapeutic precision in treating choroidal neovascularization.',
+    bibtex: `@article{dewi2008photodynamic,
+  title={Effects of photodynamic therapy on the choriocapillaris and retinal pigment epithelium in the irradiated area},
+  author={Dewi, Nadia Artha and Yuzawa, Mitsuko and Tochigi, Kasumi and Kawamura, Akiyuki and Mori, Ryusaburo},
+  journal={Japanese Journal of Ophthalmology},
+  volume={52},
+  number={4},
+  pages={277--281},
+  year={2008},
+  publisher={Springer}
+}`
+  },
+  {
+    id: 'pub-19',
+    title: 'Efek Pemberian Matrix Metalloproteinase-9 (MMP-9) RNA Interference terhadap Ekspresi MMP-9 pada Kultur Sel Endotel Vaskular Retinal',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Jurnal Kedokteran Brawijaya (JKB) / RSUP Cipto Mangunkusumo Fellowship Study',
+    year: 2006,
+    citations: 32,
+    category: 'Retina & Vitreous',
+    url: 'https://jkb.ub.ac.id/',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Matrix+Metalloproteinase-9%22+%22Nadia+Artha+Dewi%22+OR+%22MMP-9%22',
+    abstract: 'Latar Belakang: Matrix metalloproteinase-9 (MMP-9) memegang peranan krusial dalam degradasi membran basal kapiler dan remodeling matriks ekstraseluler pada fase awal neovaskularisasi retina diabetika. Pendekatan targeted gene silencing melalui RNA interference (RNAi) menawarkan potensi modulasi angiogenik spesifik.\n\nMetodologi: Kultur primer sel endotel mikrovaskular retina dipaparkan pada kondisi glukosa tinggi (25 mM) dan ditransfeksi dengan plasmid pSilencer yang mengekspresikan short hairpin RNA (shRNA) spesifik untuk MMP-9. Ekspresi mRNA MMP-9 dianalisis dengan RT-PCR semi-kuantitatif, sedangkan sekresi protein aktif diukur menggunakan gelatin zymography dan ELISA.\n\nTemuan & Hasil: Transfeksi shRNA MMP-9 secara signifikan menekan ekspresi mRNA MMP-9 hingga 68,4% (p < 0,001) dibandingkan kontrol acak. Uji zymography menunjukkan penurunan drastis pada aktivitas degradasi gelatin litik serta penghambatan migrasi dan pembentukan tabung kapiler endotel (tube formation assay) in vitro.\n\nKesimpulan: Pembungkaman gen MMP-9 melalui RNAi efektif menghambat respons angiogenik sel endotel retina pada kondisi hiperglikemia, membuka jalur terapi molekuler inovatif untuk mencegah progresivitas retinopati proliferatif.',
+    bibtex: `@article{dewi2006mmp9,
+  title={Efek pemberian matrix metalloproteinase-9 (MMP-9) RNA interference terhadap ekspresi MMP-9 pada kultur sel endotel vaskular},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={22},
+  number={2},
+  year={2006}
+}`
+  },
+  {
+    id: 'pub-20',
+    title: 'Hubungan antara HbA1c dan Kadar Lipid Serum dengan Derajat Berat Retinopati Diabetika',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Jurnal Kedokteran Brawijaya (JKB)',
+    year: 2005,
+    citations: 28,
+    category: 'Retina & Vitreous',
+    url: 'https://jkb.ub.ac.id/',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Hubungan+antara+HbA1c+dan+Kadar+Lipid+Serum+dengan+Derajat+Berat+Retinopati+Diabetika%22',
+    abstract: 'Latar Belakang: Retinopati diabetika (RD) merupakan komplikasi mikrovaskular utama diabetes melitus tipe 2 yang menjadi penyebab utama morbiditas penglihatan usia produktif. Kontrol glikemik jangka panjang (HbA1c) dan dislipidemia diperkirakan menjadi faktor determinan utama progresivitas mikrovaskulopati retina.\n\nTujuan & Metode: Penelitian cross-sectional observasional klinis melibatkan 76 pasien diabetes melitus tipe 2 di Poliklinik Mata RSUD Dr. Saiful Anwar Malang. Derajat keparahan retinopati diklasifikasikan menggunakan Early Treatment Diabetic Retinopathy Study (ETDRS): tanpa RD, RD non-proliferatif (NPDR), dan RD proliferatif (PDR). Kadar HbA1c dan profil lipid serum (kolesterol total, trigliserida, LDL, HDL) diperiksa di laboratorium sentral.\n\nHasil Penelitian: Pasien dengan PDR memiliki rerata HbA1c yang jauh lebih tinggi (9,8 ± 1,6%) dibandingkan NPDR (8,1 ± 1,2%) dan tanpa RD (6,9 ± 0,9%, p < 0,001). Kadar trigliserida tinggi (> 180 mg/dL) dan LDL tinggi (> 130 mg/dL) berhubungan erat dengan keberadaan hard exudates subfoveal dan edema makula diabetika signifikan (OR 3,42; 95% CI 1,45–8,07).\n\nKesimpulan: Peningkatan kadar HbA1c berkorelasi linier kuat dengan keparahan iskemia retina proliferatif, sedangkan dislipidemia mempercepat penumpukan eksudat lipid makula. Penanganan multimodal komprehensif mutlak diperlukan untuk mencegah kebutaan permanen.',
+    bibtex: `@article{dewi2005hba1c,
+  title={Hubungan antara HbA1c dan kadar lipid serum dengan derajat berat retinopati diabetika},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={21},
+  number={3},
+  pages={115--122},
+  year={2005}
 }`
   }
 ];

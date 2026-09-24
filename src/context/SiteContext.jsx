@@ -54,10 +54,10 @@ export function SiteProvider({ children }) {
           // Sort chronologically descending
           parsed.scholar.publications.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
 
-          if (parsed.scholar.stats && (!parsed.scholar.stats.totalCitations || parsed.scholar.stats.totalCitations < 385)) {
+          if (parsed.scholar.stats && (!parsed.scholar.stats.totalCitations || parsed.scholar.stats.totalCitations < 490)) {
             parsed.scholar.stats = defaultSiteContent.scholar.stats;
           }
-          if (!parsed.scholar.spotlight || !parsed.scholar.spotlight.featuredPubIds || parsed.scholar.spotlight.featuredPubIds.length < 5) {
+          if (!parsed.scholar.spotlight || !parsed.scholar.spotlight.featuredPubIds || parsed.scholar.spotlight.featuredPubIds.length < 6) {
             parsed.scholar.spotlight = defaultSiteContent.scholar.spotlight;
           }
 
