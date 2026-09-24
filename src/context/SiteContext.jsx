@@ -54,7 +54,7 @@ export function SiteProvider({ children }) {
           // Sort chronologically descending
           parsed.scholar.publications.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
 
-          if (parsed.scholar.stats && (!parsed.scholar.stats.totalCitations || parsed.scholar.stats.totalCitations < 490)) {
+          if (parsed.scholar.stats && (!parsed.scholar.stats.totalCitations || parsed.scholar.stats.totalCitations < 840 || (parsed.scholar.stats.totalPublications && parsed.scholar.stats.totalPublications < 40))) {
             parsed.scholar.stats = defaultSiteContent.scholar.stats;
           }
           if (!parsed.scholar.spotlight || !parsed.scholar.spotlight.featuredPubIds || parsed.scholar.spotlight.featuredPubIds.length < 6) {

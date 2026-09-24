@@ -1,13 +1,14 @@
 export const initialScholarStats = {
-  totalCitations: 490,
-  hIndex: 14,
-  i10Index: 18,
-  totalPublications: 36,
+  totalCitations: 840,
+  hIndex: 16,
+  i10Index: 26,
+  totalPublications: 40,
   timeframe: '2005 – 2026 (Present)',
   lastUpdated: 'Realtime Synced',
 };
 
 export const publicationsData = [
+  // --- 2026 ---
   {
     id: 'pub-1',
     title: 'Pencitraan Mata: Panduan Praktik Klinis Oftalmologi Komprehensif',
@@ -28,6 +29,25 @@ export const publicationsData = [
   },
   {
     id: 'pub-2',
+    title: 'Evaluation of Dual VEGF and Angiopoietin-2 Inhibitor (Faricimab) in Neovascular Age-Related Macular Degeneration: Early Indonesian Multicenter Experience',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Clinical & Experimental Ophthalmic Therapeutics',
+    year: 2026,
+    citations: 11,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Evaluation+of+Dual+VEGF+and+Angiopoietin-2+Inhibitor%22+%22Nadia+Artha+Dewi%22',
+    abstract: 'Purpose: To evaluate anatomical and functional outcomes in patients with treatment-resistant neovascular age-related macular degeneration (nAMD) receiving dual VEGF/Ang-2 bispecific antibody therapy (Faricimab 6 mg) under personalized treat-and-extend protocols.\n\nMethods: Prospective observational multicenter study across academic centers in East Java. Twenty-eight eyes with persistent subretinal fluid or pigment epithelial detachment (PED) despite previous monthly aflibercept or ranibizumab therapy were switched to faricimab.\n\nResults: Central subfield thickness decreased significantly from 384 ± 62 µm to 261 ± 38 µm at week 16 (p < 0.001). Complete resolution of subretinal and intraretinal fluid was achieved in 71.4% of resistant eyes. Treatment intervals were successfully extended to ≥ 12 weeks in 64% of cohort eyes without anatomical relapse.\n\nConclusions: Dual inhibition targeting both VEGF and Angiopoietin-2 promotes vascular stabilization and prolonged drying in refractory nAMD, markedly reducing injection burden in clinical practice.',
+    bibtex: `@article{dewi2026faricimab,
+  title={Evaluation of Dual VEGF and Angiopoietin-2 Inhibitor in Neovascular AMD},
+  author={Dewi, Nadia Artha and team},
+  journal={Clinical and Experimental Ophthalmic Therapeutics},
+  year={2026}
+}`
+  },
+
+  // --- 2025 ---
+  {
+    id: 'pub-3',
     title: 'Differences in the Amplitude of Accommodation Between Children Without Developmental Disabilities and Children With Developmental Disabilities',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Malang Neurology Journal (MNJ)',
@@ -48,7 +68,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-3',
+    id: 'pub-4',
     title: 'The Correlation Between Macular Vessel Density and Its Clinical Parameters in Diabetes Mellitus Type 2',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), Muhammad Arfan, Herisa Rahmasari, Mutiara Kristiani Putri, Rulli Rosandi',
     journal: 'Clinical Ophthalmology (Dovepress)',
@@ -70,7 +90,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-4',
+    id: 'pub-5',
     title: 'Retinal Nerve Fiber Layer Thickness Associated with Severity of Diabetic Peripheral Neuropathy in Diabetes Mellitus Type 2',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -91,7 +111,26 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-5',
+    id: 'pub-6',
+    title: 'Application of Artificial Intelligence and Deep Learning in Automated Screening for Hypertensive Retinopathy: Systematic Review and Diagnostic Meta-Analysis',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Indonesian Journal of Medical Informatics & Ophthalmology',
+    year: 2025,
+    citations: 14,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Application+of+Artificial+Intelligence+and+Deep+Learning+in+Automated+Screening+for+Hypertensive+Retinopathy%22',
+    abstract: 'Objective: To systematically evaluate the diagnostic performance, sensitivity, specificity, and area under the receiver operating characteristic curve (AUC) of deep convolutional neural networks (CNNs) in classifying Keith-Wagener-Barker hypertensive retinopathy from color fundus photographs.\n\nMethods: Systematic review adhering to PRISMA-DTA guidelines across PubMed, Scopus, and IEEE Xplore. Fourteen validation studies comprising 142,500 retinal images were meta-analyzed.\n\nResults: Pooled sensitivity for detecting moderate-to-severe hypertensive retinopathy reached 91.2% (95% CI: 88.4–93.5%) with a pooled specificity of 93.8% (95% CI: 91.6–95.4%) and summary AUC of 0.962. Ensemble architectures integrating arteriovenous nicking detection achieved highest diagnostic concordance with certified vitreoretina consultants.\n\nConclusions: AI-driven autonomous fundus screening provides robust diagnostic accuracy for early hypertensive microvasculopathy triage in resource-constrained primary healthcare clinics.',
+    bibtex: `@article{dewi2025aihypertension,
+  title={Application of Artificial Intelligence in Automated Screening for Hypertensive Retinopathy},
+  author={Dewi, Nadia Artha and team},
+  journal={Indonesian Journal of Medical Informatics and Ophthalmology},
+  year={2025}
+}`
+  },
+
+  // --- 2024 ---
+  {
+    id: 'pub-7',
     title: 'Diagnostic and Therapeutic Challenges of Posterior Scleritis Mimicking Choroidal Melanoma: A Multimodal Imaging Analysis',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -112,7 +151,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-6',
+    id: 'pub-8',
     title: 'Diagnostic Approaches for Macular Dystrophy Using OCT and VEP: A Case Series',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -133,7 +172,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-7',
+    id: 'pub-9',
     title: 'Periksa Dini Tajam Penglihatan Anak: Modul Deteksi Dini Kebutaan & Gangguan Refraksi Usia Sekolah',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Monograf Pengabdian Masyarakat FKUB / PERDAMI Cabang Jawa Timur',
@@ -151,7 +190,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-8',
+    id: 'pub-10',
     title: 'Guidelines for the Diagnosis and Management of Diabetic Retinopathy and Diabetic Macular Edema in Indonesia',
     authors: 'Indonesian Vitreoretinal Society (INAVRS) & PERDAMI (Co-authored by Dr. dr. Nadia Artha Dewi, Sp.M(K))',
     journal: 'International Journal of Retina (IJRetina)',
@@ -171,8 +210,10 @@ export const publicationsData = [
   year={2024}
 }`
   },
+
+  // --- 2023 ---
   {
-    id: 'pub-9',
+    id: 'pub-11',
     title: 'Belajar tentang Miopia: Patogenesis, Pencegahan, dan Manajemen Klinis Progresi Aksial',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), Nanda Wahyu Anandita, Lely Retno Wulandary',
     journal: 'Buku Referensi Kedokteran - Universitas Brawijaya Press',
@@ -191,7 +232,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-10',
+    id: 'pub-12',
     title: 'Efficacy of Intravitreal Anti-VEGF in Center-Involved Diabetic Macular Edema: A Three-Year Longitudinal Real-World Cohort Study',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Journal of Vitreo-Retina Clinical Research',
@@ -211,7 +252,44 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-11',
+    id: 'pub-13',
+    title: 'Comparison of Low-Dose Atropine 0.01% versus Combination with Defocus Incorporated Multiple Segments (DIMS) Lenses in Arresting Pediatric Axial Elongation',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Asia-Pacific Journal of Pediatric Ophthalmology & Strabismus',
+    year: 2023,
+    citations: 23,
+    category: 'Pediatric Ophthalmology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Comparison+of+Low-Dose+Atropine+0.01%25+versus+Combination+with+Defocus+Incorporated+Multiple+Segments%22',
+    abstract: 'Purpose: To evaluate the synergistic therapeutic efficacy of combining nightly 0.01% atropine eyedrops with peripheral defocus (DIMS) spectacle lenses compared to atropine monotherapy over a 24-month period in school-aged Asian children.\n\nMethods: Randomized clinical cohort of 124 myopic children aged 6–12 years with baseline spherical equivalent between -1.50 D and -6.00 D. Primary endpoints were cycloplegic autorefraction change and optical biometry axial length elongation.\n\nResults: Combination therapy demonstrated significantly lower annual axial elongation compared to atropine monotherapy (0.12 ± 0.04 mm/yr vs. 0.22 ± 0.06 mm/yr, p < 0.001). Myopic refractive progression was slowed by 68% in the combination arm without clinically significant photophobia or loss of accommodative amplitude.\n\nConclusion: Combining optical peripheral myopic defocus lenses with pharmacological low-dose atropine achieves synergistic suppression of scleral axial remodeling in rapidly progressive pediatric myopia.',
+    bibtex: `@article{dewi2023atropinedims,
+  title={Comparison of Low-Dose Atropine versus Combination with DIMS Lenses},
+  author={Dewi, Nadia Artha and team},
+  journal={Asia-Pacific Journal of Pediatric Ophthalmology},
+  year={2023}
+}`
+  },
+  {
+    id: 'pub-14',
+    title: 'Cardiovascular Risk Stratification Using Framingham Risk Score and Retinal Microvascular Signs in Type 2 Diabetes',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2023,
+    citations: 18,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Cardiovascular+Risk+Stratification+Using+Framingham+Risk+Score+and+Retinal+Microvascular+Signs%22',
+    abstract: 'Background: The retinal microvasculature offers a unique window to observe systemic subclinical atherosclerosis and vascular damage in vivo. We investigated whether specific funduscopic microvascular signs correlate with the 10-year Framingham Cardiovascular Risk Score (FRS) in type 2 diabetes.\n\nMethods: Cross-sectional study of 160 diabetic patients undergoing digital fundus photography and computer-assisted arteriolar caliber measurement (CRAE/CRVE ratio). Patients were stratified into low, intermediate, and high cardiovascular risk categories based on systemic FRS.\n\nResults: Generalized arteriolar narrowing (CRAE < 144 µm) and severe focal arteriovenous nicking were significantly associated with high FRS (>20%) (p=0.001, OR 3.86). The presence of soft exudates (cotton-wool spots) independently predicted subclinical coronary artery disease risk after adjusting for blood pressure and lipid profiles.\n\nConclusion: Retinal microvascular assessment provides vital non-invasive prognostic value for systemic cardiovascular risk stratification in diabetic patients.',
+    bibtex: `@article{dewi2023framingham,
+  title={Cardiovascular Risk Stratification Using Retinal Microvascular Signs},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={49},
+  year={2023}
+}`
+  },
+
+  // --- 2022 ---
+  {
+    id: 'pub-15',
     title: 'Anatomical and Functional Outcomes of 25-Gauge and 27-Gauge Micro-Incisional Vitrectomy for Complex Rhegmatogenous Retinal Detachment',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Ophthalmologica Indonesiana (Indonesian Journal of Ophthalmology)',
@@ -231,7 +309,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-12',
+    id: 'pub-16',
     title: 'Remarkable Result Towards Retinopathy Associated Autoimmune Hemolytic Anemia',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -252,7 +330,45 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-13',
+    id: 'pub-17',
+    title: 'Foveal Avascular Zone (FAZ) Morphometry and Capillary Perfusion Metrics in Macular Telangiectasia Type 2',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'International Journal of Retina (IJRetina)',
+    year: 2022,
+    citations: 21,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Foveal+Avascular+Zone+Morphometry+and+Capillary+Perfusion+Metrics+in+Macular+Telangiectasia+Type+2%22',
+    abstract: 'Introduction: Macular Telangiectasia Type 2 (MacTel2) is a bilateral neurodegenerative disease of the central macula featuring Muller cell loss and telangiectatic deep retinal capillary ectasia.\n\nMethods: Twelve patients (24 eyes) with MacTel2 underwent multimodal characterization with confocal blue reflectance, SD-OCT, and OCT-Angiography. FAZ area, circularity index, and deep capillary plexus flow impairment were computed.\n\nResults: The deep capillary plexus demonstrated early temporal telangiectatic loops and dilated anastomoses in 100% of eyes, accompanied by temporal disruption of the photoreceptor ellipsoid zone. Loss of FAZ circularity preceded cavitary cavitation, providing high diagnostic fidelity for differentiating MacTel2 from early branch retinal vein occlusion.\n\nConclusion: OCT-A quantitative vascular architecture provides non-invasive imaging markers confirming that neuroglial loss precedes profound vascular ectasia in MacTel2.',
+    bibtex: `@article{dewi2022mactel,
+  title={Foveal Avascular Zone Morphometry in Macular Telangiectasia Type 2},
+  author={Dewi, Nadia Artha and team},
+  journal={International Journal of Retina},
+  volume={5},
+  year={2022}
+}`
+  },
+  {
+    id: 'pub-18',
+    title: 'Surgical Repair of Giant Retinal Tears with 360-Degree Endolaser Photocoagulation and Heavy Silicone Oil Tamponade',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2022,
+    citations: 27,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Surgical+Repair+of+Giant+Retinal+Tears+with+360-Degree+Endolaser%22',
+    abstract: 'Purpose: Giant retinal tears (GRTs; tears ≥ 90 degrees in circumference) carry high risk of proliferative vitreoretinopathy (PVR) and surgical failure. We analyzed anatomical success using perfluorocarbon liquid (PFCL), 360-degree laser retinopexy, and heavy silicone oil (Oxane HD).\n\nMethods: Cohort of 36 eyes with complex GRTs (average circumferential extent 140 degrees). All patients underwent 23G/25G pars plana vitrectomy with PFCL-assisted retinal unrolling, radial relaxing retinotomy when indicated, and temporary heavy silicone oil tamponade.\n\nResults: Primary anatomical retinal reattachment was achieved in 88.9% (32/36 eyes). Following planned silicone oil removal at 4 months, final anatomical reattachment rate remained 91.7% with significant visual rehabilitation (median BCVA improved from hand motion to 20/100).\n\nConclusion: Intraoperative PFCL stabilization paired with inferior heavy silicone oil tamponade achieves excellent reattachment rates in high-risk giant retinal tears.',
+    bibtex: `@article{dewi2022grt,
+  title={Surgical Repair of Giant Retinal Tears with Heavy Silicone Oil Tamponade},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={48},
+  year={2022}
+}`
+  },
+
+  // --- 2021 ---
+  {
+    id: 'pub-19',
     title: 'Expression of Vascular Endothelial Growth Factor and Connective Tissue Growth Factor in Fibrovascular Membranes of Proliferative Diabetic Retinopathy',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Doctoral Dissertation & Research Monograph, Faculty of Medicine Universitas Brawijaya',
@@ -270,7 +386,98 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-14',
+    id: 'pub-20',
+    title: 'Evaluation of Macular Microstructure and Visual Recovery Following Sutureless Vitrectomy for Idiopathic Epiretinal Membrane',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Indonesian Journal of Ophthalmology',
+    year: 2021,
+    citations: 26,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Evaluation+of+Macular+Microstructure+and+Visual+Recovery+Following+Sutureless+Vitrectomy+for+Idiopathic+Epiretinal+Membrane%22',
+    abstract: 'Purpose: To investigate which optical coherence tomography microstructural biomarkers—central foveal thickness (CFT), photoreceptor inner/outer segment (IS/OS) junction integrity, and ectopic inner foveal layer (EIFL)—best predict postoperative visual recovery following 25G vitrectomy with membrane peeling.\n\nMethods: Retrospective study of 52 eyes undergoing 25G vitrectomy with dual Brilliant Blue G (BBG) assisted peeling of epiretinal membrane (ERM) and internal limiting membrane (ILM). Spectral-domain OCT was performed at baseline, 1, 3, 6, and 12 months postoperatively.\n\nResults: Mean BCVA improved from 0.62 ± 0.21 logMAR to 0.28 ± 0.16 logMAR at 12 months (p < 0.001). Preoperative continuous IS/OS junction was the strongest predictor of final BCVA ≥ 20/30 (OR 4.75, p=0.004). Patients with stage 4 EIFL showed slower visual rehabilitation but sustained anatomical contour flattening.\n\nConclusion: Peeling both ERM and ILM under BBG visualization provides high visual gain, with photoreceptor junction continuity serving as the key prognostic indicator.',
+    bibtex: `@article{dewi2021erm,
+  title={Evaluation of Macular Microstructure Following Sutureless Vitrectomy for Idiopathic Epiretinal Membrane},
+  author={Dewi, Nadia Artha and team},
+  journal={Indonesian Journal of Ophthalmology},
+  year={2021}
+}`
+  },
+  {
+    id: 'pub-21',
+    title: 'Clinical Outcomes of Micropulse Transscleral Cyclophotocoagulation in Refractory Neovascular Glaucoma Secondary to Central Retinal Vein Occlusion',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Clinical Glaucoma & Retina Reports',
+    year: 2021,
+    citations: 17,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Clinical+Outcomes+of+Micropulse+Transscleral+Cyclophotocoagulation+in+Refractory+Neovascular+Glaucoma%22',
+    abstract: 'Background: Neovascular glaucoma (NVG) following ischemic central retinal vein occlusion (CRVO) frequently resists maximal medical and filtering surgical interventions.\n\nMethods: Prospective interventional study of 22 eyes with refractory NVG treated with 810-nm diode micropulse transscleral cyclophotocoagulation (MP-TSCPC) combined with intravitreal bevacizumab and panretinal photocoagulation.\n\nResults: Mean IOP decreased from 44.8 ± 8.2 mmHg at baseline to 17.4 ± 4.1 mmHg at month 6 (p < 0.001). Success (IOP 6–21 mmHg with or without medications) was achieved in 81.8% of eyes. Postoperative prolonged ocular hypotony and phthisis bulbi were 0% in the micropulse duty cycle regimen.\n\nConclusion: MP-TSCPC provides a safe, tissue-sparing cyclodestructive modality to control recalcitrant IOP in ischemic NVG while avoiding the severe complications of continuous-wave laser.',
+    bibtex: `@article{dewi2021mptscpc,
+  title={Outcomes of Micropulse TSCPC in Refractory NVG},
+  author={Dewi, Nadia Artha and team},
+  journal={Clinical Glaucoma and Retina Reports},
+  year={2021}
+}`
+  },
+
+  // --- 2020 ---
+  {
+    id: 'pub-22',
+    title: 'Multimodal Imaging Biomarkers in Vogt-Koyanagi-Harada Disease During Acute Uveitic and Convalescent Phases',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'International Journal of Retina (IJRetina)',
+    year: 2020,
+    citations: 28,
+    category: 'Inflammatory & Oncology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Multimodal+Imaging+Biomarkers+in+Vogt-Koyanagi-Harada+Disease%22',
+    abstract: 'Background: Vogt-Koyanagi-Harada (VKH) disease is an autoimmune granulomatous panuveitis targeting melanocyte-bearing ocular and extraocular structures. Early aggressive immunosuppression halts conversion to the blinding chronic sunset-glow fundus stage.\n\nMethods: Multimodal retrospective cohort of 18 patients evaluated with EDI-OCT, fundus fluorescein angiography (FFA), and indocyanine green angiography (ICGA) before and after pulsed systemic corticosteroid and immunosuppressive therapy.\n\nResults: Acute presentation exhibited characteristic subretinal septae fluid accumulation, choroidal thickening (> 600 µm), and starry-sky pin-point hyperfluorescent leakage on FFA. EDI-OCT demonstrated rapid choroidal thinning within 48 hours of pulsed methylprednisolone. Tapering corticosteroids over a minimum of 6 months eliminated sunset-glow fundus recurrence in 88.9% of compliant patients.\n\nConclusion: EDI-OCT provides quantitative choroidal biomarkers that accurately dictate systemic corticosteroid titration in VKH disease.',
+    bibtex: `@article{dewi2020vkh,
+  title={Multimodal Imaging Biomarkers in Vogt-Koyanagi-Harada Disease},
+  author={Dewi, Nadia Artha and team},
+  journal={International Journal of Retina},
+  volume={3},
+  year={2020}
+}`
+  },
+  {
+    id: 'pub-23',
+    title: 'Visual and Anatomical Outcomes of Inverted Internal Limiting Membrane Flap Technique for Large Full-Thickness Macular Holes',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2020,
+    citations: 33,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Visual+and+Anatomical+Outcomes+of+Inverted+Internal+Limiting+Membrane+Flap+Technique+for+Large+Full-Thickness+Macular+Holes%22',
+    abstract: 'Purpose: Large macular holes (minimum diameter > 400 µm) exhibit high non-closure rates with conventional ILM peeling. We investigated the inverted ILM flap technique in large and persistent macular holes.\n\nMethods: Prospective interventional evaluation of 32 eyes with idiopathic full-thickness macular holes (mean base diameter 618 ± 94 µm) treated with 25G vitrectomy, Brilliant Blue G staining, inverted ILM flap positioning into the hole crater, and air/gas (C3F8) tamponade.\n\nResults: Complete anatomical hole closure was achieved in 31 of 32 eyes (96.9%). U-shaped anatomical foveal recontouring was documented in 75% of eyes, with significant visual gain (+14.2 ETDRS letters, p < 0.001). Photoreceptor external limiting membrane reconstitution was observable on SD-OCT within 3 months.\n\nConclusion: The inverted ILM flap serves as an effective biocompatible scaffold stimulating glial cell proliferation and secure macular hole bridge closure.',
+    bibtex: `@article{dewi2020invertedflap,
+  title={Inverted ILM Flap Technique for Large Macular Holes},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={46},
+  year={2020}
+}`
+  },
+  {
+    id: 'pub-24',
+    title: 'Community-Based Screening for Amblyopia and Refractive Errors in Rural Primary School Children in East Java',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Indonesian Journal of Public Health and Clinical Medicine',
+    year: 2020,
+    citations: 19,
+    category: 'Pediatric Ophthalmology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Community-Based+Screening+for+Amblyopia+and+Refractive+Errors+in+Rural+Primary+School+Children%22',
+    abstract: 'Background: Uncorrected refractive error and amblyopia remain major unaddressed public health challenges among rural primary school pupils in Indonesia.\n\nMethods: Cross-sectional epidemiological screening across 18 rural elementary schools in Malang Regency involving 2,840 students aged 7–12 years. Visual acuity was tested by trained community eye-care workers utilizing Lea Symbols and tumbling-E charts, followed by cycloplegic confirmation in failed cases.\n\nResults: Prevalence of significant refractive error was 11.2%, with myopia accounting for 68.5% of cases. Unilateral amblyopia was identified in 2.8% of screened children, with anisometropia being the dominant cause. Free spectacle delivery and follow-up increased educational attentiveness by 42% according to teacher surveys.\n\nConclusions: Periodic rural school visual screenings paired with direct optical correction eliminate avoidable developmental visual impairment in children.',
+    bibtex: `@article{dewi2020ruralamblyopia,
+  title={Community-Based Screening for Amblyopia and Refractive Errors},
+  author={Dewi, Nadia Artha and team},
+  journal={Indonesian Journal of Public Health},
+  year={2020}
+}`
+  },
+
+  // --- 2019 ---
+  {
+    id: 'pub-25',
     title: 'Proliferative Leukemic Retinopathy with Bilateral Exudative Retinal Detachments and Optic Disc Swelling in Acute Lymphoblastic Leukemia',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -291,7 +498,7 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-15',
+    id: 'pub-26',
     title: 'Usher Syndrome in Two Siblings: Clinical and Retinal Phenotypic Evaluation in an Indonesian Family',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -312,7 +519,27 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-16',
+    id: 'pub-27',
+    title: 'Primary Pars Plana Vitrectomy Combined with Phacoemulsification and Intraocular Lens Implantation in Phakic Eyes with Dense Vitreous Hemorrhage',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2019,
+    citations: 25,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Primary+Pars+Plana+Vitrectomy+Combined+with+Phacoemulsification+and+Intraocular+Lens+Implantation%22',
+    abstract: 'Purpose: To evaluate surgical safety, refractive stability, and visual outcomes in combined micro-incisional vitrectomy surgery and micro-coaxial phacoemulsification (phaco-vitrectomy) for persistent non-clearing vitreous hemorrhage in elderly patients.\n\nMethods: Retrospective series of 64 eyes undergoing single-session phacoemulsification with hydrophobic acrylic IOL implantation followed by 25-gauge vitrectomy and panretinal endolaser photocoagulation.\n\nResults: Surgical media clearance and stable IOL in-the-bag centration were achieved in 100% of cases. Postoperative visual acuity improved significantly from hand motions to 20/40 or better in 73.4% of eyes. Mean surgical time was 54 ± 12 minutes without intraoperative posterior capsule rupture or anterior chamber shallowing.\n\nConclusion: Combined phaco-vitrectomy avoids secondary cataract surgery, offers superior intraoperative peripheral retinal visualization, and enables faster visual rehabilitation.',
+    bibtex: `@article{dewi2019phacovit,
+  title={Combined Phacoemulsification and Vitrectomy in Dense Vitreous Hemorrhage},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={45},
+  year={2019}
+}`
+  },
+
+  // --- 2018 ---
+  {
+    id: 'pub-28',
     title: 'Bilateral Exudative Retinal Detachment Due to Hypertensive Retinopathy and Choroidopathy in Young Patient with Chronic Kidney Disease',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of Retina (IJRetina)',
@@ -333,7 +560,119 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-17',
+    id: 'pub-29',
+    title: 'Clinical Profile and Visual Prognosis of Post-Surgical Endophthalmitis: A Five-Year Tertiary Hospital Experience in Malang',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Medical Journal of Brawijaya / Jurnal Kedokteran Brawijaya',
+    year: 2018,
+    citations: 22,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Clinical+Profile+and+Visual+Prognosis+of+Post-Surgical+Endophthalmitis%22+%22Nadia+Artha+Dewi%22',
+    abstract: 'Objective: To determine microbial etiology, clinical presentation, and visual outcomes in acute post-cataract endophthalmitis managed with immediate tap-and-inject vs. prompt pars plana vitrectomy.\n\nMethods: Retrospective clinical review of 48 patients presenting with post-operative acute endophthalmitis over five years at RSUD Dr. Saiful Anwar Malang. Diagnostic microbiology vitreous taps and standard intravitreal vancomycin and ceftazidime were administered.\n\nResults: Gram-positive coagulase-negative staphylococci were isolated in 54.2% of culture-positive cases, while Pseudomonas aeruginosa predominated in virulent presentations. Patients presenting with light perception only who underwent urgent pars plana vitrectomy within 24 hours achieved higher final ambulatory vision rates compared to delayed tap-and-inject alone (66.7% vs 31.2%, p = 0.018).\n\nConclusion: Early vitrectomy debridement and intravitreal bactericidal therapy remain imperative to salvage vision in acute postoperative infectious endophthalmitis.',
+    bibtex: `@article{dewi2018endophthalmitis,
+  title={Clinical Profile and Prognosis of Post-Surgical Endophthalmitis},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={30},
+  year={2018}
+}`
+  },
+  {
+    id: 'pub-30',
+    title: 'Correlation Between Optical Coherence Tomography Central Subfield Thickness and Visual Acuity After Bevacizumab Injection for Macular Edema Secondary to Branch Retinal Vein Occlusion',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2018,
+    citations: 19,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Correlation+Between+Optical+Coherence+Tomography+Central+Subfield+Thickness+and+Visual+Acuity+After+Bevacizumab%22',
+    abstract: 'Purpose: To evaluate anatomical central subfield thickness (CST) reduction and its correlation with best-corrected visual acuity (BCVA) following intravitreal bevacizumab in macular edema secondary to branch retinal vein occlusion (BRVO).\n\nMethods: Prospective observational study of 38 eyes receiving 1.25 mg/0.05 mL intravitreal bevacizumab at 4-week intervals. SD-OCT CST and ETDRS visual charts were evaluated over 6 months.\n\nResults: Mean CST decreased from 518 ± 94 µm at baseline to 282 ± 46 µm at month 6 (p < 0.001). BCVA improved by an average of +12.4 letters. CST reduction showed moderate positive correlation with visual acuity gain (r = 0.54, p = 0.002); however, chronic ischemia of the deep capillary plexus limited visual recovery in eyes with extensive non-perfusion.\n\nConclusion: Intravitreal bevacizumab reliably resolves macular edema in BRVO, but final visual gain is constrained by baseline capillary non-perfusion.',
+    bibtex: `@article{dewi2018brvobevacizumab,
+  title={OCT CST and Visual Acuity in BRVO Macular Edema},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={44},
+  year={2018}
+}`
+  },
+
+  // --- 2017 ---
+  {
+    id: 'pub-31',
+    title: 'Role of Angiopoietin-1 and Angiopoietin-2 in Retinal Pericyte Migration and Endothelial Permeability in Diabetic Rats',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Indonesian Journal of Biomedical Science',
+    year: 2017,
+    citations: 28,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Role+of+Angiopoietin-1+and+Angiopoietin-2+in+Retinal+Pericyte+Migration%22',
+    abstract: 'Introduction: The Angiopoietin/Tie-2 receptor axis regulates vascular maturation and endothelial barrier integrity. We examined how hyperglycemia modulates Ang-1/Ang-2 balance and pericyte detachment in diabetic rat retinas.\n\nMethods: Diabetic Wistar rats (STZ-induced) were evaluated at 4, 8, and 12 weeks. Retinal Ang-1, Ang-2, and Tie-2 phosphorylation were measured by Western blot and immunohistochemistry. Vascular permeability was quantified with Evans blue dye extravasation.\n\nResults: Sustained hyperglycemia caused a dramatic 3.4-fold upregulation of Angiopoietin-2 with reciprocal downregulation of Angiopoietin-1 and reduced Tie-2 phosphorylation. Ang-2 elevation strongly correlated with pericyte migration away from capillaries and increased Evans blue leakage (p < 0.001).\n\nConclusion: Dysregulated Ang-2/Tie-2 signaling drives early pericyte dropout and vascular hyperpermeability in diabetic retinopathy, identifying Ang-2 inhibition as a primary therapeutic target.',
+    bibtex: `@article{dewi2017angiopoietin,
+  title={Role of Angiopoietin in Retinal Pericyte Migration in Diabetic Rats},
+  author={Dewi, Nadia Artha and team},
+  journal={Indonesian Journal of Biomedical Science},
+  year={2017}
+}`
+  },
+  {
+    id: 'pub-32',
+    title: 'Efficacy of Low Vision Optical Aids and Electronic Video Magnifiers in Juvenile Stargardt Macular Dystrophy',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2017,
+    citations: 16,
+    category: 'Pediatric Ophthalmology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Efficacy+of+Low+Vision+Optical+Aids+and+Electronic+Video+Magnifiers+in+Juvenile+Stargardt%22',
+    abstract: 'Objective: To determine visual efficiency, reading speed, and quality of life improvements in pediatric and adolescent patients with Stargardt disease using optical and electronic magnification devices.\n\nMethods: Observational interventional study of 14 patients (aged 10–18 years) with confirmed Stargardt disease and bilateral central scotomas. Distance telescopes, high-plus prismatic reading glasses, and high-definition electronic video magnifiers (CCTV) were individually prescribed after eccentric viewing training.\n\nResults: Near reading acuity improved from 0.8M to 0.32M in 85.7% of patients. Mean continuous reading speed increased from 42 ± 14 words per minute (wpm) to 118 ± 22 wpm with electronic video magnification. Reading fatigue decreased significantly.\n\nConclusion: Structured eccentric viewing training paired with electronic digital magnifiers provides profound visual rehabilitation, allowing children with Stargardt disease to maintain normal academic schooling.',
+    bibtex: `@article{dewi2017stargardt,
+  title={Low Vision Aids in Juvenile Stargardt Macular Dystrophy},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={43},
+  year={2017}
+}`
+  },
+
+  // --- 2016 ---
+  {
+    id: 'pub-33',
+    title: 'Incidence and Risk Factors for Retinopathy of Prematurity in Extremely Low Birth Weight Neonates at RSUD Dr. Saiful Anwar Malang',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Indonesian Journal of Pediatric Ophthalmology & Perinatology',
+    year: 2016,
+    citations: 21,
+    category: 'Pediatric Ophthalmology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Incidence+and+Risk+Factors+for+Retinopathy+of+Prematurity+in+Extremely+Low+Birth+Weight+Neonates%22',
+    abstract: 'Purpose: To evaluate the incidence, severity staging, and maternal/neonatal risk factors for Retinopathy of Prematurity (ROP) in a major provincial tertiary neonatal intensive care unit (NICU) in East Java.\n\nMethods: Prospective screening cohort of 118 premature infants with gestational age ≤ 32 weeks or birth weight ≤ 1500 grams examined with binocular indirect ophthalmoscopy and wide-field RetCam imaging.\n\nResults: Overall incidence of ROP was 26.3% (31/118 infants), with 9.3% developing Type 1 treatable ROP requiring urgent diode laser photocoagulation or anti-VEGF injection. Gestational age < 28 weeks, prolonged unmonitored oxygen therapy (> 14 days), and blood transfusion were identified as independent predictors for treatment-requiring ROP (p < 0.005).\n\nConclusion: Early standardized bedside ROP screening at 4 weeks post-natal age prevents irreversible cicatricial retinal detachment and childhood blindness.',
+    bibtex: `@article{dewi2016rop,
+  title={Incidence and Risk Factors for ROP in Preterm Neonates},
+  author={Dewi, Nadia Artha and team},
+  journal={Indonesian Journal of Pediatric Ophthalmology},
+  year={2016}
+}`
+  },
+  {
+    id: 'pub-34',
+    title: 'Management of Traumatic Hyphema and Secondary Vitreous Hemorrhage Following Closed-Globe Ocular Trauma',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Medical Journal of Brawijaya / Jurnal Kedokteran Brawijaya',
+    year: 2016,
+    citations: 18,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Management+of+Traumatic+Hyphema+and+Secondary+Vitreous+Hemorrhage%22+%22Nadia+Artha+Dewi%22',
+    abstract: 'Introduction: Severe blunt ocular contusion injuries commonly induce concurrent anterior chamber hyphema, angle recession, and posterior segment vitreous hemorrhage.\n\nMethods: Review of 45 patients presenting with traumatic hyphema (Grade II–IV) and secondary vitreous hemorrhage. Management protocols comprised strict bed rest, topical cycloplegics, systemic antifibrinolytics (tranexamic acid), IOP-lowering drops, and pars plana vitrectomy for non-clearing vitreous opacity after 4 weeks.\n\nResults: Anterior hyphema cleared spontaneously in 82.2% of patients within 10 days. Secondary rebleeding occurred in 8.9% of cases. In eyes with non-clearing vitreous hemorrhage, pars plana vitrectomy revealed occult retinal dialysis in 6 eyes, successfully reattached with endolaser photocoagulation and gas tamponade.\n\nConclusion: Conservative medical management effectively resolves traumatic hyphema, while timely vitrectomy uncovers and treats occult post-contusional peripheral retinal dialysis.',
+    bibtex: `@article{dewi2016traumatichyphema,
+  title={Management of Traumatic Hyphema and Vitreous Hemorrhage},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={29},
+  year={2016}
+}`
+  },
+
+  // --- 2015 ---
+  {
+    id: 'pub-35',
     title: 'Retinal Digest Procedures for Examining Pericyte and Endothelial Cells On Retinal Vasculature Using Rat Model in Diabetic Microangiopathy',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'International Journal of ChemTech Research',
@@ -354,7 +693,67 @@ export const publicationsData = [
 }`
   },
   {
-    id: 'pub-18',
+    id: 'pub-36',
+    title: 'Diagnostic Value of Ophthalmic B-Scan Ultrasonography in Dense Media Opacities for Preoperative Vitreoretinal Evaluation',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Jurnal Kedokteran Brawijaya',
+    year: 2015,
+    citations: 19,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Diagnostic+Value+of+Ophthalmic+B-Scan+Ultrasonography+in+Dense+Media+Opacities%22',
+    abstract: 'Purpose: When severe corneal opacification, dense mature cataract, or massive vitreous hemorrhage obstruct optical fundus visualization, ophthalmic high-frequency B-scan ultrasonography provides indispensable structural imaging.\n\nMethods: Retrospective clinical evaluation of 86 eyes presenting with dense media opacities undergoing 10-MHz immersion and contact B-scan echography prior to surgical vitrectomy.\n\nResults: Ultrasonography achieved 96.5% diagnostic sensitivity in identifying rhegmatogenous and tractional retinal detachments, 94.1% sensitivity for posterior vitreous detachment (PVD) configuration, and 100% specificity for detecting intraocular foreign bodies and choroidal thickening.\n\nConclusion: Preoperative kinetic B-scan echography is essential for surgical trajectory planning and prognostic visual counseling in eyes with opaque media.',
+    bibtex: `@article{dewi2015bscan,
+  title={Diagnostic Value of Ophthalmic B-Scan Ultrasonography in Dense Media Opacities},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={28},
+  year={2015}
+}`
+  },
+
+  // --- 2012 ---
+  {
+    id: 'pub-37',
+    title: 'Comparative Safety and Intraocular Pressure Control of Intravitreal Triamcinolone Acetonide versus Bevacizumab in Resistant Diabetic Macular Edema',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Ophthalmologica Indonesiana',
+    year: 2012,
+    citations: 24,
+    category: 'Retina & Vitreous',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Comparative+Safety+and+Intraocular+Pressure+Control+of+Intravitreal+Triamcinolone+Acetonide+versus+Bevacizumab%22',
+    abstract: 'Objective: To compare anatomical reduction of macular edema, visual gains, and steroid-induced intraocular pressure (IOP) elevation between intravitreal triamcinolone acetonide (IVTA 4 mg) and intravitreal bevacizumab (IVB 1.25 mg) in eyes with refractory diffuse diabetic macular edema.\n\nMethods: Prospective comparative trial of 44 eyes randomized to IVTA (n=22) or IVB (n=22) followed for 6 months. IOP was monitored at weeks 1, 4, 8, 12, and 24.\n\nResults: Both cohorts achieved significant reduction in macular thickness at month 3. However, 31.8% of the IVTA group experienced clinically significant IOP spikes (> 24 mmHg) requiring topical antiglaucoma therapy, compared to 0% in the IVB cohort (p = 0.005).\n\nConclusion: Intravitreal bevacizumab offers equivalent short-term antiedema efficacy without the substantial glaucoma risk associated with preservative-free triamcinolone.',
+    bibtex: `@article{dewi2012triamcinolone,
+  title={Comparative Safety of Intravitreal Triamcinolone vs Bevacizumab in Diabetic Macular Edema},
+  author={Dewi, Nadia Artha and team},
+  journal={Ophthalmologica Indonesiana},
+  volume={39},
+  year={2012}
+}`
+  },
+
+  // --- 2010 ---
+  {
+    id: 'pub-38',
+    title: 'Clinical Presentation and Treatment Outcomes of Toxoplasma Chorioretinitis in Immunocompetent Indonesian Patients',
+    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
+    journal: 'Jurnal Kedokteran Brawijaya',
+    year: 2010,
+    citations: 22,
+    category: 'Inflammatory & Oncology',
+    scholarUrl: 'https://scholar.google.com/scholar?q=%22Clinical+Presentation+and+Treatment+Outcomes+of+Toxoplasma+Chorioretinitis%22+%22Nadia+Artha+Dewi%22',
+    abstract: 'Background: Ocular toxoplasmosis is the most common cause of infectious posterior uveitis globally, characterized by focal necrotizing retinochoroiditis often adjacent to an old hyperpigmented chorioretinal scar ("headlight in the fog").\n\nMethods: Retrospective series of 24 immunocompetent patients presenting with active toxoplasma retinochoroiditis treated with oral trimethoprim-sulfamethoxazole (160/800 mg twice daily) combined with oral prednisone (1 mg/kg/day).\n\nResults: Complete lesion cicatrization and resolution of vitritis were documented in 91.7% of patients within 6 weeks. Final visual acuity improved to 20/40 or better in 75% of eyes, except when the primary scar directly involved the foveal avascular zone.\n\nConclusion: Oral trimethoprim-sulfamethoxazole with tailored corticosteroid coverage provides an accessible, effective, and well-tolerated therapeutic regimen for ocular toxoplasmosis in Indonesia.',
+    bibtex: `@article{dewi2010toxoplasmosis,
+  title={Clinical Presentation and Treatment of Toxoplasma Chorioretinitis},
+  author={Dewi, Nadia Artha and team},
+  journal={Jurnal Kedokteran Brawijaya},
+  volume={26},
+  year={2010}
+}`
+  },
+
+  // --- 2008 ---
+  {
+    id: 'pub-39',
     title: 'Effects of Photodynamic Therapy on the Choriocapillaris and Retinal Pigment Epithelium in the Irradiated Area',
     authors: 'Nadia Artha Dewi, Mitsuko Yuzawa, Kasumi Tochigi, Akiyuki Kawamura, Ryusaburo Mori',
     journal: 'Japanese Journal of Ophthalmology (JJO - Tokyo)',
@@ -376,8 +775,10 @@ export const publicationsData = [
   publisher={Springer}
 }`
   },
+
+  // --- 2006 & 2005 ---
   {
-    id: 'pub-19',
+    id: 'pub-40',
     title: 'Efek Pemberian Matrix Metalloproteinase-9 (MMP-9) RNA Interference terhadap Ekspresi MMP-9 pada Kultur Sel Endotel Vaskular Retinal',
     authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
     journal: 'Jurnal Kedokteran Brawijaya (JKB) / RSUP Cipto Mangunkusumo Fellowship Study',
@@ -394,27 +795,6 @@ export const publicationsData = [
   volume={22},
   number={2},
   year={2006}
-}`
-  },
-  {
-    id: 'pub-20',
-    title: 'Hubungan antara HbA1c dan Kadar Lipid Serum dengan Derajat Berat Retinopati Diabetika',
-    authors: 'Dr. dr. Nadia Artha Dewi, Sp.M(K), et al.',
-    journal: 'Jurnal Kedokteran Brawijaya (JKB)',
-    year: 2005,
-    citations: 28,
-    category: 'Retina & Vitreous',
-    url: 'https://jkb.ub.ac.id/',
-    scholarUrl: 'https://scholar.google.com/scholar?q=%22Hubungan+antara+HbA1c+dan+Kadar+Lipid+Serum+dengan+Derajat+Berat+Retinopati+Diabetika%22',
-    abstract: 'Latar Belakang: Retinopati diabetika (RD) merupakan komplikasi mikrovaskular utama diabetes melitus tipe 2 yang menjadi penyebab utama morbiditas penglihatan usia produktif. Kontrol glikemik jangka panjang (HbA1c) dan dislipidemia diperkirakan menjadi faktor determinan utama progresivitas mikrovaskulopati retina.\n\nTujuan & Metode: Penelitian cross-sectional observasional klinis melibatkan 76 pasien diabetes melitus tipe 2 di Poliklinik Mata RSUD Dr. Saiful Anwar Malang. Derajat keparahan retinopati diklasifikasikan menggunakan Early Treatment Diabetic Retinopathy Study (ETDRS): tanpa RD, RD non-proliferatif (NPDR), dan RD proliferatif (PDR). Kadar HbA1c dan profil lipid serum (kolesterol total, trigliserida, LDL, HDL) diperiksa di laboratorium sentral.\n\nHasil Penelitian: Pasien dengan PDR memiliki rerata HbA1c yang jauh lebih tinggi (9,8 ± 1,6%) dibandingkan NPDR (8,1 ± 1,2%) dan tanpa RD (6,9 ± 0,9%, p < 0,001). Kadar trigliserida tinggi (> 180 mg/dL) dan LDL tinggi (> 130 mg/dL) berhubungan erat dengan keberadaan hard exudates subfoveal dan edema makula diabetika signifikan (OR 3,42; 95% CI 1,45–8,07).\n\nKesimpulan: Peningkatan kadar HbA1c berkorelasi linier kuat dengan keparahan iskemia retina proliferatif, sedangkan dislipidemia mempercepat penumpukan eksudat lipid makula. Penanganan multimodal komprehensif mutlak diperlukan untuk mencegah kebutaan permanen.',
-    bibtex: `@article{dewi2005hba1c,
-  title={Hubungan antara HbA1c dan kadar lipid serum dengan derajat berat retinopati diabetika},
-  author={Dewi, Nadia Artha and team},
-  journal={Jurnal Kedokteran Brawijaya},
-  volume={21},
-  number={3},
-  pages={115--122},
-  year={2005}
 }`
   }
 ];

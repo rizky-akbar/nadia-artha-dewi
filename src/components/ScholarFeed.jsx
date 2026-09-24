@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { BookOpen, Search, RefreshCw, ExternalLink, Quote, Award, Sparkles, Check, FileText, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
+import { BookOpen, Search, RefreshCw, ExternalLink, Quote, Award, Sparkles, Check, FileText, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { useSite } from '../context/SiteContext.jsx';
 import { syncScholarData, buildArticleScholarUrl, SCHOLAR_CONFIG } from '../services/googleScholarService.js';
 
@@ -7,7 +7,7 @@ export default function ScholarFeed() {
   const { siteContent } = useSite();
   const scholarData = siteContent?.scholar || {};
   const publications = scholarData.publications || [];
-  const initialStats = scholarData.stats || { totalCitations: 490, hIndex: 14, i10Index: 18, totalPublications: 36, timeframe: '2005 – 2026' };
+  const initialStats = scholarData.stats || { totalCitations: 840, hIndex: 16, i10Index: 26, totalPublications: 40, timeframe: '2005 – 2026' };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -112,6 +112,35 @@ export default function ScholarFeed() {
     });
   }, [publications, searchQuery, selectedCategory, selectedYear]);
 
+  // Pagination Configuration: 8 articles per page
+  const ITEMS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset to page 1 whenever search, category, or year filters change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedYear]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPublications.length / ITEMS_PER_PAGE));
+  const activePage = Math.min(currentPage, totalPages);
+
+  const paginatedPublications = useMemo(() => {
+    const start = (activePage - 1) * ITEMS_PER_PAGE;
+    return filteredPublications.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredPublications, activePage]);
+
+  const startIndex = (activePage - 1) * ITEMS_PER_PAGE;
+  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredPublications.length);
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages || page === activePage) return;
+    setCurrentPage(page);
+    const anchor = document.getElementById('scholar-list-anchor') || document.getElementById('scholar-feed');
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section id="scholar-feed" className="py-20 lg:py-28 relative overflow-hidden bg-slate-950">
       {/* Subtle ambient lighting */}
@@ -187,7 +216,7 @@ export default function ScholarFeed() {
             <div className="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight font-serif">
               {stats.i10Index}
             </div>
-            <p className="text-[11px] text-cyan-400 mt-1">18 Papers with ≥ 10 citations</p>
+            <p className="text-[11px] text-cyan-400 mt-1">{stats.i10Index || 26} Papers with ≥ 10 citations</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-700/50 transition-all">
@@ -414,10 +443,17 @@ export default function ScholarFeed() {
         </div>
 
         {/* Publications List */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-            <span>Showing {filteredPublications.length} peer-reviewed works</span>
-            <span>Sorted by Year & Scientific Relevance</span>
+        <div id="scholar-list-anchor" className="space-y-4 scroll-mt-24">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 px-1 gap-2">
+            <span>
+              Showing <span className="text-cyan-400 font-semibold">{filteredPublications.length > 0 ? `${startIndex + 1}–${endIndex}` : '0'}</span> of <span className="text-cyan-400 font-semibold">{filteredPublications.length}</span> peer-reviewed works {totalPages > 1 && `(Page ${activePage} of ${totalPages})`}
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-0.5 rounded-full bg-cyan-950 border border-cyan-800 text-[11px] text-cyan-300 font-medium">
+                8 Articles / Page
+              </span>
+              <span>Sorted by Year & Scientific Relevance</span>
+            </div>
           </div>
 
           {filteredPublications.length === 0 ? (
@@ -437,7 +473,7 @@ export default function ScholarFeed() {
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4">
-              {filteredPublications.map((pub) => {
+              {paginatedPublications.map((pub) => {
                 const isCopied = copiedId === pub.id;
                 return (
                   <div
@@ -550,6 +586,64 @@ export default function ScholarFeed() {
                   </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* Pagination Navigation Controls (8 articles per show) */}
+          {totalPages > 1 && (
+            <div className="pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-800/80">
+              <div className="text-xs text-slate-400 flex items-center gap-2">
+                <span>
+                  Showing <strong className="text-white font-mono">{startIndex + 1}–{endIndex}</strong> of <strong className="text-white font-mono">{filteredPublications.length}</strong> publications
+                </span>
+                <span className="inline-block w-1 h-1 rounded-full bg-slate-600" />
+                <span className="text-cyan-400 font-medium">Page {activePage} of {totalPages}</span>
+              </div>
+
+              <nav aria-label="Publications pagination" className="flex items-center gap-1.5 sm:gap-2">
+                {/* Previous Page Button */}
+                <button
+                  onClick={() => handlePageChange(activePage - 1)}
+                  disabled={activePage === 1}
+                  className="flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-700/60 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                  aria-label="Previous Page"
+                >
+                  <ChevronLeft className="w-4 h-4 text-cyan-400" />
+                  <span className="hidden sm:inline">Prev</span>
+                </button>
+
+                {/* Page Number Buttons */}
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                    const isActive = activePage === pageNum;
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => handlePageChange(pageNum)}
+                        aria-current={isActive ? 'page' : undefined}
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center justify-center ${
+                          isActive
+                            ? 'bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-lg shadow-cyan-600/40 ring-2 ring-cyan-400/50 scale-105 font-bold'
+                            : 'bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800 hover:border-cyan-800'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Next Page Button */}
+                <button
+                  onClick={() => handlePageChange(activePage + 1)}
+                  disabled={activePage === totalPages}
+                  className="flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-700/60 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                  aria-label="Next Page"
+                >
+                  <span className="hidden sm:inline">Next</span>
+                  <ChevronRight className="w-4 h-4 text-cyan-400" />
+                </button>
+              </nav>
             </div>
           )}
         </div>

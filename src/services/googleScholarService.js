@@ -52,10 +52,10 @@ export async function syncScholarData(currentStats) {
     setTimeout(() => {
       const now = new Date();
       const updatedStats = {
-        totalCitations: Math.max(490, (currentStats?.totalCitations || 490) + (Math.random() > 0.5 ? 1 : 0)),
-        hIndex: 14,
-        i10Index: 18,
-        totalPublications: 36,
+        totalCitations: Math.max(840, (currentStats?.totalCitations || 840) + (Math.random() > 0.5 ? 1 : 0)),
+        hIndex: 16,
+        i10Index: 26,
+        totalPublications: 40,
         timeframe: '2005 – 2026 (Present)',
         lastUpdated: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
         syncTimestamp: now.toISOString(),

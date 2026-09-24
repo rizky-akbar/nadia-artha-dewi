@@ -18,8 +18,8 @@ export const defaultSiteContent = {
     stat2Value: '4,500+',
     stat2Sub: 'Micro-Incisional (MIVS)',
     stat3Label: 'Academic Works',
-    stat3Value: '35+ Papers',
-    stat3Sub: 'Author of "Miopia"',
+    stat3Value: '40 Publications',
+    stat3Sub: 'Google Scholar & SINTA',
   },
 
   // 2. About Section
