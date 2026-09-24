@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { 
   X, Image as ImageIcon, FileText, Settings, Plus, Edit, Trash2, 
   RotateCcw, Upload, Download, Shield, LogOut, Check, Sparkles, 
-  Eye, KeyRound, User, Stethoscope, GraduationCap, Compass, BookOpen, Building, Phone, Target, Tag, Star
+  Eye, KeyRound, User, Stethoscope, GraduationCap, Compass, BookOpen, Building, Phone, Target, Tag, Star,
+  Globe, Search, Share2, Link2, Copy, AlertCircle, CheckCircle2, Code2, ExternalLink
 } from 'lucide-react';
 import { useSite } from '../../context/SiteContext.jsx';
+import { defaultSiteContent } from '../../data/defaultSiteContent.js';
 import ArticleEditorModal from './ArticleEditorModal.jsx';
 
 export default function AdminPanelModal() {
@@ -102,6 +104,15 @@ export default function AdminPanelModal() {
   const [contactForm, setContactForm] = useState(siteContent.contact);
   const [footerForm, setFooterForm] = useState(siteContent.footer);
   const [retinaForm, setRetinaForm] = useState(siteContent.retina || {});
+  const [seoForm, setSeoForm] = useState(siteContent.seo || defaultSiteContent.seo);
+  const [previewTab, setPreviewTab] = useState('google');
+  const [copiedSchema, setCopiedSchema] = useState(false);
+
+  React.useEffect(() => {
+    if (siteContent?.seo) {
+      setSeoForm(siteContent.seo);
+    }
+  }, [siteContent.seo]);
 
   // Modals / sub-editors
   const [editingPubIndex, setEditingPubIndex] = useState(null);
@@ -380,6 +391,69 @@ export default function AdminPanelModal() {
     updateSection('practice', { ...siteContent.practice, locations: updated });
   };
 
+  // SEO Handlers
+  const handleSaveSeo = (e) => {
+    if (e) e.preventDefault();
+    updateSection('seo', seoForm);
+    showToast('SEO & Metadata settings saved! Applied live to website head.');
+  };
+
+  const handleResetSeo = () => {
+    if (window.confirm('Reset all SEO settings to the recommended default values?')) {
+      resetSection('seo');
+      setSeoForm(defaultSiteContent.seo);
+      showToast('SEO settings reset to default values.');
+    }
+  };
+
+  const handleCopySchemaJson = () => {
+    const rawImage = seoForm.ogImage || siteImages?.doctorProfile || '/assets/dr_nadia_profile.jpg';
+    const absoluteImageUrl = rawImage.startsWith('http')
+      ? rawImage
+      : `${seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app'}${rawImage.startsWith('/') ? '' : '/'}${rawImage}`;
+
+    const specialties = (seoForm.medicalSpecialty || 'Ophthalmology, Vitreo-Retina Surgery')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    const schemaObj = {
+      '@context': 'https://schema.org',
+      '@type': seoForm.schemaType || 'Physician',
+      'name': 'Dr. dr. Nadia Artha Dewi, Sp.M(K)',
+      'jobTitle': 'Vitreo-Retina Consultant Ophthalmologist',
+      'image': absoluteImageUrl,
+      'description': seoForm.metaDescription,
+      'url': seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app',
+      'medicalSpecialty': specialties,
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': seoForm.clinicCity || 'Malang',
+        'addressRegion': 'Jawa Timur',
+        'addressCountry': seoForm.clinicCountry || 'Indonesia',
+      },
+      'hospitalAffiliation': [
+        {
+          '@type': 'Hospital',
+          'name': 'RSUD Dr. Saiful Anwar Malang',
+        },
+        {
+          '@type': 'MedicalOrganization',
+          'name': 'Fakultas Kedokteran Universitas Brawijaya',
+        },
+      ],
+      'sameAs': [
+        'https://scholar.google.com/citations?user=CcARsGgAAAAJ&hl=en',
+        'https://sinta.kemdiktisaintek.go.id/authors/profile/5982903',
+      ],
+    };
+
+    navigator.clipboard.writeText(JSON.stringify(schemaObj, null, 2));
+    setCopiedSchema(true);
+    showToast('Schema.org JSON-LD copied to clipboard!');
+    setTimeout(() => setCopiedSchema(false), 2500);
+  };
+
   // Article handlers
   const handleOpenNewArticle = () => {
     setEditingArticle(null);
@@ -475,6 +549,7 @@ export default function AdminPanelModal() {
     { id: 'articles', label: 'Articles & Blog', icon: FileText },
     { id: 'amsler', label: 'Amsler Grid CMS', icon: Eye },
     { id: 'practice', label: 'Practice & Contact', icon: Building },
+    { id: 'seo', label: 'SEO & Metadata', icon: Globe },
     { id: 'settings', label: 'Backup & Security', icon: Settings },
   ];
 
@@ -1920,6 +1995,670 @@ export default function AdminPanelModal() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </form>
+          )}
+
+          {/* TAB: SEO & METADATA CMS */}
+          {activeTab === 'seo' && (
+            <form onSubmit={handleSaveSeo} className="space-y-6 max-w-4xl text-left">
+              {/* Header & Sticky Action Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="p-1.5 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-400">
+                      <Globe className="w-4 h-4" />
+                    </span>
+                    <h3 className="text-lg font-bold text-white font-serif">
+                      Search Engine Optimization (SEO) & Social Sharing
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Live editor for Google search snippets, Open Graph social share cards (WhatsApp, Facebook, LinkedIn), and Schema.org medical structured data.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={handleResetSeo}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-300 border border-slate-800 transition-colors"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Reset Defaults</span>
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 shadow-md shadow-cyan-950/50 transition-all"
+                  >
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Save SEO Settings</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* LIVE SIMULATOR / PREVIEW WIDGET */}
+              <div className="p-5 rounded-3xl bg-slate-900/80 border border-cyan-800/50 space-y-4 shadow-xl">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
+                      Live Search & Social Preview
+                    </span>
+                  </div>
+
+                  {/* Switch between Google and Social view */}
+                  <div className="flex items-center p-1 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => setPreviewTab('google')}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        previewTab === 'google'
+                          ? 'bg-cyan-600 text-white shadow-sm'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Google Search
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPreviewTab('social')}
+                      className={`px-3 py-1 rounded-lg font-semibold transition-all ${
+                        previewTab === 'social'
+                          ? 'bg-cyan-600 text-white shadow-sm'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Social Share Card (WhatsApp / FB)
+                    </button>
+                  </div>
+                </div>
+
+                {previewTab === 'google' ? (
+                  /* Google SERP Preview Card */
+                  <div className="space-y-3">
+                    <div className="p-4 sm:p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5 font-sans">
+                      <div className="flex items-center gap-2 text-xs text-slate-400">
+                        <div className="w-4 h-4 rounded-full bg-cyan-600/30 flex items-center justify-center text-[10px] text-cyan-300 font-bold">
+                          👁
+                        </div>
+                        <span className="truncate max-w-[280px] sm:max-w-md font-mono text-[11px] text-slate-400">
+                          {seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app'} › dr-nadia-artha-dewi
+                        </span>
+                      </div>
+                      <h4 className="text-base sm:text-lg font-medium text-[#8ab4f8] hover:underline cursor-pointer leading-snug">
+                        {seoForm.metaTitle || 'Dr. dr. Nadia Artha Dewi, Sp.M(K) — Vitreo-Retina Consultant & Ophthalmologist'}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                        {seoForm.metaDescription || 'Official medical profile and academic portfolio of Dr. dr. Nadia Artha Dewi, Sp.M(K) - Vitreo-Retina Consultant Ophthalmologist...'}
+                      </p>
+                    </div>
+
+                    {/* Character length health metrics */}
+                    <div className="flex flex-wrap items-center gap-3 text-[11px]">
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 border border-slate-800">
+                        <span className="text-slate-400">Title Length:</span>
+                        <strong className={
+                          (seoForm.metaTitle || '').length >= 40 && (seoForm.metaTitle || '').length <= 65
+                            ? 'text-emerald-400'
+                            : (seoForm.metaTitle || '').length > 65
+                            ? 'text-amber-400'
+                            : 'text-slate-300'
+                        }>
+                          {(seoForm.metaTitle || '').length} / 60 chars
+                        </strong>
+                        <span className="text-slate-500">
+                          {(seoForm.metaTitle || '').length >= 40 && (seoForm.metaTitle || '').length <= 65 ? '✓ Optimal' : '(40-60 rec.)'}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 border border-slate-800">
+                        <span className="text-slate-400">Description Length:</span>
+                        <strong className={
+                          (seoForm.metaDescription || '').length >= 120 && (seoForm.metaDescription || '').length <= 165
+                            ? 'text-emerald-400'
+                            : (seoForm.metaDescription || '').length > 165
+                            ? 'text-amber-400'
+                            : 'text-slate-300'
+                        }>
+                          {(seoForm.metaDescription || '').length} / 160 chars
+                        </strong>
+                        <span className="text-slate-500">
+                          {(seoForm.metaDescription || '').length >= 120 && (seoForm.metaDescription || '').length <= 165 ? '✓ Optimal' : '(120-160 rec.)'}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950 border border-slate-800">
+                        <span className="text-slate-400">Robots:</span>
+                        <span className="font-mono text-cyan-300">{seoForm.robots || 'index, follow'}</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  /* Social Share Card Preview (WhatsApp / Facebook / LinkedIn) */
+                  <div className="space-y-3">
+                    <div className="max-w-md rounded-2xl bg-slate-950 border border-slate-800 overflow-hidden shadow-lg">
+                      <div className="aspect-[1.91/1] w-full bg-slate-900 relative overflow-hidden flex items-center justify-center">
+                        <img
+                          src={seoForm.ogImage || siteImages?.doctorProfile || '/assets/dr_nadia_profile.jpg'}
+                          alt="Open Graph Preview"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-sm text-[10px] text-cyan-300 font-mono">
+                          OG Image
+                        </div>
+                      </div>
+                      <div className="p-3.5 space-y-1 bg-slate-900/90 border-t border-slate-800">
+                        <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400 font-mono">
+                          {new URL(seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app').hostname.toUpperCase()}
+                        </div>
+                        <h4 className="text-sm font-bold text-white leading-snug line-clamp-2">
+                          {seoForm.ogTitle || seoForm.metaTitle}
+                        </h4>
+                        <p className="text-xs text-slate-300 line-clamp-2">
+                          {seoForm.ogDescription || seoForm.metaDescription}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-slate-400">
+                      This preview simulates how your website link card appears when sent on WhatsApp, Facebook, LinkedIn, Telegram, and X (Twitter).
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* CARD 1: PRIMARY SEARCH ENGINE META TAGS */}
+              <div className="p-5 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+                <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
+                  <Search className="w-4 h-4 text-cyan-400" />
+                  <h4 className="text-sm font-bold text-white">Primary Search Engine Meta Tags</h4>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Meta Title */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Meta Page Title (Browser Title)
+                      </label>
+                      <span className="text-[11px] font-mono text-slate-400">
+                        {(seoForm.metaTitle || '').length} / 60 characters
+                      </span>
+                    </div>
+                    <input
+                      type="text"
+                      required
+                      value={seoForm.metaTitle}
+                      onChange={(e) => setSeoForm({ ...seoForm, metaTitle: e.target.value })}
+                      placeholder="e.g. Dr. dr. Nadia Artha Dewi, Sp.M(K) — Vitreo-Retina Consultant..."
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500 font-sans"
+                    />
+                    <p className="text-[10px] text-slate-400">
+                      Recommendation: 50–60 characters. Include doctor's full name, credentials, subspecialty, and primary city (e.g. Malang).
+                    </p>
+                  </div>
+
+                  {/* Meta Description */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Meta Description (Search Snippet)
+                      </label>
+                      <span className="text-[11px] font-mono text-slate-400">
+                        {(seoForm.metaDescription || '').length} / 160 characters
+                      </span>
+                    </div>
+                    <textarea
+                      rows={3}
+                      required
+                      value={seoForm.metaDescription}
+                      onChange={(e) => setSeoForm({ ...seoForm, metaDescription: e.target.value })}
+                      placeholder="e.g. Official medical profile and academic portfolio of Dr. dr. Nadia Artha Dewi..."
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-slate-200 focus:border-cyan-500 font-sans leading-relaxed"
+                    />
+                    <p className="text-[10px] text-slate-400">
+                      Recommendation: 130–160 characters. A concise, engaging summary explaining doctor's expertise to entice patients to click.
+                    </p>
+                  </div>
+
+                  {/* Meta Keywords & Quick-Add Buttons */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Search Keywords (Comma-separated)
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.metaKeywords}
+                      onChange={(e) => setSeoForm({ ...seoForm, metaKeywords: e.target.value })}
+                      placeholder="dokter mata malang, vitreo retina, spesialis retina, operasi katarak..."
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-slate-200 focus:border-cyan-500"
+                    />
+
+                    {/* Quick-add keyword pills */}
+                    <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                      <span className="text-[10px] text-slate-400">Quick Add:</span>
+                      {[
+                        'dokter mata malang',
+                        'vitreo-retina malang',
+                        'spesialis retina',
+                        'operasi vitrektomi',
+                        'retinopati diabetik',
+                        'amsler grid test',
+                        'PERDAMI',
+                        'RSUD Dr Saiful Anwar',
+                        'FK Universitas Brawijaya',
+                      ].map((kw) => {
+                        const isAlreadyAdded = (seoForm.metaKeywords || '').toLowerCase().includes(kw.toLowerCase());
+                        return (
+                          <button
+                            key={kw}
+                            type="button"
+                            disabled={isAlreadyAdded}
+                            onClick={() => {
+                              const curr = (seoForm.metaKeywords || '').trim();
+                              const updated = curr ? `${curr}, ${kw}` : kw;
+                              setSeoForm({ ...seoForm, metaKeywords: updated });
+                            }}
+                            className={`text-[10px] px-2 py-0.5 rounded-md border transition-all ${
+                              isAlreadyAdded
+                                ? 'bg-slate-950 border-slate-800 text-slate-600 cursor-default'
+                                : 'bg-slate-900 border-slate-700 text-cyan-300 hover:bg-cyan-950 hover:border-cyan-700 cursor-pointer'
+                            }`}
+                          >
+                            + {kw}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                    {/* Canonical URL */}
+                    <div className="space-y-1 sm:col-span-2">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Canonical Website URL
+                      </label>
+                      <input
+                        type="url"
+                        value={seoForm.canonicalUrl}
+                        onChange={(e) => setSeoForm({ ...seoForm, canonicalUrl: e.target.value })}
+                        placeholder="https://nadia-artha-dewi.vercel.app"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-cyan-300 font-mono focus:border-cyan-500"
+                      />
+                    </div>
+
+                    {/* Robots Indexing Directive */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Robots Directives
+                      </label>
+                      <select
+                        value={seoForm.robots}
+                        onChange={(e) => setSeoForm({ ...seoForm, robots: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      >
+                        <option value="index, follow">index, follow (Standard)</option>
+                        <option value="noindex, follow">noindex, follow (Unlisted)</option>
+                        <option value="noindex, nofollow">noindex, nofollow (Private)</option>
+                        <option value="index, nofollow">index, nofollow</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Author Name */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Author / Physician Attribution
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.author}
+                      onChange={(e) => setSeoForm({ ...seoForm, author: e.target.value })}
+                      placeholder="Dr. dr. Nadia Artha Dewi, Sp.M(K)"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* CARD 2: SOCIAL MEDIA & OPEN GRAPH (OG) SETTINGS */}
+              <div className="p-5 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+                <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
+                  <Share2 className="w-4 h-4 text-cyan-400" />
+                  <h4 className="text-sm font-bold text-white">Open Graph & Social Media Sharing (WhatsApp, FB, X)</h4>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* OG Title */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Open Graph Title
+                      </label>
+                      <input
+                        type="text"
+                        value={seoForm.ogTitle}
+                        onChange={(e) => setSeoForm({ ...seoForm, ogTitle: e.target.value })}
+                        placeholder="Inherits from Meta Title if blank"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      />
+                    </div>
+
+                    {/* OG Type */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Open Graph Type
+                      </label>
+                      <select
+                        value={seoForm.ogType}
+                        onChange={(e) => setSeoForm({ ...seoForm, ogType: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      >
+                        <option value="profile">profile (Recommended for doctor)</option>
+                        <option value="website">website</option>
+                        <option value="article">article</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* OG Description */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Open Graph Description
+                    </label>
+                    <textarea
+                      rows={2}
+                      value={seoForm.ogDescription}
+                      onChange={(e) => setSeoForm({ ...seoForm, ogDescription: e.target.value })}
+                      placeholder="Inherits from Meta Description if blank"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-slate-200 focus:border-cyan-500"
+                    />
+                  </div>
+
+                  {/* OG Image & Presets */}
+                  <div className="space-y-2">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Social Card Image URL (OG Image)
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={seoForm.ogImage}
+                        onChange={(e) => setSeoForm({ ...seoForm, ogImage: e.target.value })}
+                        placeholder="/assets/dr_nadia_profile.jpg or https://..."
+                        className="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-cyan-300 font-mono focus:border-cyan-500"
+                      />
+                    </div>
+
+                    {/* Presets */}
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <span className="text-[10px] text-slate-400">Quick Select Image:</span>
+                      <button
+                        type="button"
+                        onClick={() => setSeoForm({ ...seoForm, ogImage: '/assets/dr_nadia_profile.jpg' })}
+                        className="text-[10px] px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyan-700 text-slate-300 hover:text-cyan-300 transition-colors"
+                      >
+                        Doctor Portrait
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSeoForm({ ...seoForm, ogImage: '/assets/dr_nadia_consultation.jpg' })}
+                        className="text-[10px] px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyan-700 text-slate-300 hover:text-cyan-300 transition-colors"
+                      >
+                        Clinical Consultation
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSeoForm({ ...seoForm, ogImage: '/assets/retina_pathology_diabetic.jpg' })}
+                        className="text-[10px] px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyan-700 text-slate-300 hover:text-cyan-300 transition-colors"
+                      >
+                        Diabetic Fundus Image
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSeoForm({ ...seoForm, ogImage: '/assets/retina_fundus_normal.jpg' })}
+                        className="text-[10px] px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyan-700 text-slate-300 hover:text-cyan-300 transition-colors"
+                      >
+                        Normal Retina Fundus
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                    {/* Twitter Card Type */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Twitter / X Card Format
+                      </label>
+                      <select
+                        value={seoForm.twitterCard}
+                        onChange={(e) => setSeoForm({ ...seoForm, twitterCard: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      >
+                        <option value="summary_large_image">summary_large_image (Large Hero Card)</option>
+                        <option value="summary">summary (Compact Square Thumbnail)</option>
+                      </select>
+                    </div>
+
+                    {/* Twitter Title */}
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">
+                        Twitter / X Card Title
+                      </label>
+                      <input
+                        type="text"
+                        value={seoForm.twitterTitle}
+                        onChange={(e) => setSeoForm({ ...seoForm, twitterTitle: e.target.value })}
+                        placeholder="Inherits from Open Graph Title"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CARD 3: SCHEMA.ORG STRUCTURED DATA (JSON-LD) */}
+              <div className="p-5 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <div className="flex items-center gap-2">
+                    <Code2 className="w-4 h-4 text-cyan-400" />
+                    <h4 className="text-sm font-bold text-white">Schema.org Medical Structured Data (JSON-LD)</h4>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">
+                    Google Rich Snippets
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Schema Type */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Entity Schema Type
+                    </label>
+                    <select
+                      value={seoForm.schemaType}
+                      onChange={(e) => setSeoForm({ ...seoForm, schemaType: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                    >
+                      <option value="Physician">Physician (Recommended for Medical Doctor)</option>
+                      <option value="MedicalBusiness">MedicalBusiness</option>
+                      <option value="MedicalOrganization">MedicalOrganization</option>
+                      <option value="Person">Person</option>
+                    </select>
+                  </div>
+
+                  {/* Medical Specialties */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Medical Specialties (Comma-separated)
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.medicalSpecialty}
+                      onChange={(e) => setSeoForm({ ...seoForm, medicalSpecialty: e.target.value })}
+                      placeholder="Ophthalmology, Vitreo-Retina Surgery"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {/* Hospital Affiliation */}
+                  <div className="space-y-1 sm:col-span-2">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Hospital & Academic Affiliation
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.hospitalAffiliation}
+                      onChange={(e) => setSeoForm({ ...seoForm, hospitalAffiliation: e.target.value })}
+                      placeholder="RSUD Dr. Saiful Anwar Malang & FK Universitas Brawijaya"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                    />
+                  </div>
+
+                  {/* Clinic City & Country */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">City</label>
+                      <input
+                        type="text"
+                        value={seoForm.clinicCity}
+                        onChange={(e) => setSeoForm({ ...seoForm, clinicCity: e.target.value })}
+                        placeholder="Malang"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-xs font-semibold text-slate-300">Country</label>
+                      <input
+                        type="text"
+                        value={seoForm.clinicCountry}
+                        onChange={(e) => setSeoForm({ ...seoForm, clinicCountry: e.target.value })}
+                        placeholder="Indonesia"
+                        className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:border-cyan-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Live JSON-LD Code Inspector Box */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                      Live Generated JSON-LD Code
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={handleCopySchemaJson}
+                        className="flex items-center gap-1 px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-cyan-300 transition-colors"
+                      >
+                        {copiedSchema ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span>{copiedSchema ? 'Copied!' : 'Copy JSON-LD'}</span>
+                      </button>
+                      <a
+                        href={`https://search.google.com/test/rich-results?url=${encodeURIComponent(seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-3 py-1 rounded-lg bg-cyan-950/70 hover:bg-cyan-900 border border-cyan-800/60 text-[11px] font-semibold text-cyan-300 transition-colors"
+                      >
+                        <span>Google Rich Results Test</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+
+                  <pre className="p-4 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-cyan-200/90 overflow-x-auto max-h-48 leading-relaxed">
+{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': seoForm.schemaType || 'Physician',
+  'name': 'Dr. dr. Nadia Artha Dewi, Sp.M(K)',
+  'jobTitle': 'Vitreo-Retina Consultant Ophthalmologist',
+  'description': seoForm.metaDescription,
+  'url': seoForm.canonicalUrl || 'https://nadia-artha-dewi.vercel.app',
+  'image': seoForm.ogImage || '/assets/dr_nadia_profile.jpg',
+  'medicalSpecialty': (seoForm.medicalSpecialty || 'Ophthalmology, Vitreo-Retina Surgery').split(',').map(s => s.trim()),
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': seoForm.clinicCity || 'Malang',
+    'addressCountry': seoForm.clinicCountry || 'Indonesia'
+  },
+  'hospitalAffiliation': [
+    { '@type': 'Hospital', 'name': 'RSUD Dr. Saiful Anwar Malang' },
+    { '@type': 'MedicalOrganization', 'name': 'Fakultas Kedokteran Universitas Brawijaya' }
+  ],
+  'sameAs': [
+    'https://scholar.google.com/citations?user=CcARsGgAAAAJ&hl=en',
+    'https://sinta.kemdiktisaintek.go.id/authors/profile/5982903'
+  ]
+}, null, 2)}
+                  </pre>
+                </div>
+              </div>
+
+              {/* CARD 4: SEARCH ENGINE VERIFICATION & ANALYTICS */}
+              <div className="p-5 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-4">
+                <div className="flex items-center gap-2 border-b border-slate-800 pb-2">
+                  <Shield className="w-4 h-4 text-cyan-400" />
+                  <h4 className="text-sm font-bold text-white">Search Console Verification & Analytics</h4>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Google Search Console Verification */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Google Search Console Verification Token
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.googleSiteVerification}
+                      onChange={(e) => setSeoForm({ ...seoForm, googleSiteVerification: e.target.value })}
+                      placeholder="e.g. ABc123dEfGhIjKlMnOpQrStUvWxYz..."
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-cyan-300 font-mono focus:border-cyan-500"
+                    />
+                    <p className="text-[10px] text-slate-400">
+                      Injects <code className="text-cyan-400">&lt;meta name="google-site-verification" content="..."&gt;</code> to verify ownership in Google Search Console.
+                    </p>
+                  </div>
+
+                  {/* Google Analytics 4 */}
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-slate-300">
+                      Google Analytics 4 Measurement ID
+                    </label>
+                    <input
+                      type="text"
+                      value={seoForm.googleAnalyticsId}
+                      onChange={(e) => setSeoForm({ ...seoForm, googleAnalyticsId: e.target.value })}
+                      placeholder="e.g. G-XXXXXXXXXX"
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-cyan-300 font-mono focus:border-cyan-500"
+                    />
+                    <p className="text-[10px] text-slate-400">
+                      Automatically injects Google Tag Manager (gtag.js) script into the document head when provided.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Sticky Action Buttons */}
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-800">
+                <button
+                  type="button"
+                  onClick={handleResetSeo}
+                  className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs font-semibold text-slate-300 border border-slate-800 transition-colors"
+                >
+                  Reset Defaults
+                </button>
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 shadow-lg shadow-cyan-950/60 transition-all"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>Save All SEO Settings</span>
+                </button>
               </div>
             </form>
           )}

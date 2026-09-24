@@ -193,4 +193,28 @@ export const defaultSiteContent = {
     disclaimer: 'Medical Disclaimer: The information, clinical articles, interactive retinal models, and Amsler Grid diagnostic tools provided on this website are intended solely for educational, academic, and patient awareness purposes. They do not constitute formal medical diagnosis or replace a personalized in-clinic ophthalmic examination. For acute vision changes, please visit an ophthalmology emergency room immediately.',
     copyrightYear: new Date().getFullYear().toString(),
   },
+
+  // 11. Search Engine Optimization (SEO) & Social Metadata
+  seo: {
+    metaTitle: 'Dr. dr. Nadia Artha Dewi, Sp.M(K) — Vitreo-Retina Consultant & Ophthalmologist Malang',
+    metaDescription: 'Official medical profile and academic portfolio of Dr. dr. Nadia Artha Dewi, Sp.M(K) - Vitreo-Retina Consultant Ophthalmologist at Universitas Brawijaya / RSUD Dr. Saiful Anwar Malang. Specializing in MIVS, diabetic retinopathy, and retinal detachment surgery.',
+    metaKeywords: 'dokter mata malang, dokter spesialis retina, vitreo-retina malang, dr nadia artha dewi, vitrektomi malang, retinopati diabetik, amsler grid test, klinik mata malang, perdami, rssa malang, fkub',
+    canonicalUrl: 'https://nadia-artha-dewi.vercel.app',
+    author: 'Dr. dr. Nadia Artha Dewi, Sp.M(K)',
+    robots: 'index, follow',
+    ogTitle: 'Dr. dr. Nadia Artha Dewi, Sp.M(K) — Vitreo-Retina Specialist & Ophthalmologist',
+    ogDescription: 'Vitreo-Retina Consultant and academician specializing in micro-incisional vitrectomy (MIVS), diabetic retinopathy, and pediatric myopia research.',
+    ogImage: '/assets/dr_nadia_profile.jpg',
+    ogType: 'profile',
+    twitterCard: 'summary_large_image',
+    twitterTitle: 'Dr. dr. Nadia Artha Dewi, Sp.M(K) — Vitreo-Retina Consultant',
+    twitterDescription: 'Senior Vitreo-Retina Consultant and academician at FKUB / RSUD Dr. Saiful Anwar Malang.',
+    googleSiteVerification: '',
+    googleAnalyticsId: '',
+    schemaType: 'Physician',
+    medicalSpecialty: 'Ophthalmology, Vitreo-Retina Surgery',
+    hospitalAffiliation: 'RSUD Dr. Saiful Anwar Malang & FK Universitas Brawijaya',
+    clinicCity: 'Malang',
+    clinicCountry: 'Indonesia',
+  },
 };

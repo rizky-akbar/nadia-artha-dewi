@@ -11,6 +11,7 @@ import Footer from './components/Footer.jsx';
 import AppointmentModal from './components/AppointmentModal.jsx';
 import AdminLoginModal from './components/admin/AdminLoginModal.jsx';
 import AdminPanelModal from './components/admin/AdminPanelModal.jsx';
+import SEOHead from './components/SEOHead.jsx';
 import { SiteProvider } from './context/SiteContext.jsx';
 
 function MainWebsite() {
@@ -18,6 +19,9 @@ function MainWebsite() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+      {/* Dynamic SEO & Metadata Injected into <head> */}
+      <SEOHead />
+
       {/* Sticky Navigation Header */}
       <Navbar onOpenAppointment={() => setAppointmentModalOpen(true)} />
 

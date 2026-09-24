@@ -61,7 +61,18 @@ export function SiteProvider({ children }) {
             parsed.scholar.spotlight = defaultSiteContent.scholar.spotlight;
           }
 
+          if (!parsed.seo) {
+            parsed.seo = defaultSiteContent.seo;
+          } else {
+            parsed.seo = { ...defaultSiteContent.seo, ...parsed.seo };
+          }
+
           localStorage.setItem('nadia_full_site_content', JSON.stringify({ ...defaultSiteContent, ...parsed }));
+        }
+        if (!parsed.seo) {
+          parsed.seo = defaultSiteContent.seo;
+        } else {
+          parsed.seo = { ...defaultSiteContent.seo, ...parsed.seo };
         }
         return { ...defaultSiteContent, ...parsed };
       }
