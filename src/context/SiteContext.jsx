@@ -26,20 +26,41 @@ export function SiteProvider({ children }) {
           parsed.scholar.spotlight = defaultSiteContent.scholar.spotlight;
         }
         if (parsed?.scholar?.publications) {
-          parsed.scholar.publications = parsed.scholar.publications.map(p => {
-            const defaultMatch = defaultSiteContent.scholar.publications.find(dp => dp.id === p.id);
-            if (defaultMatch) {
-              const needsAbstract = !p.abstract || p.abstract.length < 250;
-              const needsScholarUrl = !p.scholarUrl || p.scholarUrl.includes('citations?user=') || p.scholarUrl.includes('K7Z5J2UAAAAJ');
-              return {
-                ...p,
-                abstract: needsAbstract ? defaultMatch.abstract : p.abstract,
-                authors: defaultMatch.authors,
-                scholarUrl: needsScholarUrl ? defaultMatch.scholarUrl : p.scholarUrl,
-              };
-            }
-            return p;
-          });
+          const existingIds = new Set(parsed.scholar.publications.map(p => p.id));
+          const missingDefaults = defaultSiteContent.scholar.publications.filter(dp => !existingIds.has(dp.id));
+
+          parsed.scholar.publications = [
+            ...parsed.scholar.publications.map(p => {
+              const defaultMatch = defaultSiteContent.scholar.publications.find(dp => dp.id === p.id);
+              if (defaultMatch) {
+                const needsAbstract = !p.abstract || p.abstract.length < 250;
+                const needsScholarUrl = !p.scholarUrl || p.scholarUrl.includes('citations?user=') || p.scholarUrl.includes('K7Z5J2UAAAAJ');
+                return {
+                  ...p,
+                  abstract: needsAbstract ? defaultMatch.abstract : p.abstract,
+                  authors: defaultMatch.authors,
+                  scholarUrl: needsScholarUrl ? defaultMatch.scholarUrl : p.scholarUrl,
+                  doi: defaultMatch.doi || p.doi,
+                  year: defaultMatch.year || p.year,
+                  journal: defaultMatch.journal || p.journal,
+                  category: defaultMatch.category || p.category,
+                };
+              }
+              return p;
+            }),
+            ...missingDefaults
+          ];
+
+          // Sort chronologically descending
+          parsed.scholar.publications.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
+
+          if (parsed.scholar.stats && (!parsed.scholar.stats.totalCitations || parsed.scholar.stats.totalCitations < 385)) {
+            parsed.scholar.stats = defaultSiteContent.scholar.stats;
+          }
+          if (!parsed.scholar.spotlight || !parsed.scholar.spotlight.featuredPubIds || parsed.scholar.spotlight.featuredPubIds.length < 5) {
+            parsed.scholar.spotlight = defaultSiteContent.scholar.spotlight;
+          }
+
           localStorage.setItem('nadia_full_site_content', JSON.stringify({ ...defaultSiteContent, ...parsed }));
         }
         return { ...defaultSiteContent, ...parsed };

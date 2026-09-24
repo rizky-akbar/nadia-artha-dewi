@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { BookOpen, Search, RefreshCw, ExternalLink, Quote, Award, Sparkles, Check, FileText, ChevronDown, ChevronUp } from 'lucide-react';
+import { BookOpen, Search, RefreshCw, ExternalLink, Quote, Award, Sparkles, Check, FileText, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import { useSite } from '../context/SiteContext.jsx';
+import { syncScholarData, buildArticleScholarUrl, SCHOLAR_CONFIG } from '../services/googleScholarService.js';
 
 export default function ScholarFeed() {
   const { siteContent } = useSite();
   const scholarData = siteContent?.scholar || {};
   const publications = scholarData.publications || [];
-  const initialStats = scholarData.stats || { totalCitations: 284, hIndex: 9, i10Index: 8, totalPublications: 36 };
+  const initialStats = scholarData.stats || { totalCitations: 385, hIndex: 12, i10Index: 15, totalPublications: 36, timeframe: '2015 – 2026' };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -20,8 +21,8 @@ export default function ScholarFeed() {
     badge: '★ Featured Landmark Research • Full Abstract',
     title: 'Google Scholar Hero Spotlight',
     subTitle: 'Peer-reviewed clinical trials, surgical innovations, and medical textbooks with complete scientific abstracts.',
-    featuredPubIds: ['pub-1', 'pub-2', 'pub-3', 'pub-6'],
-    defaultPubId: 'pub-1',
+    featuredPubIds: ['pub-3', 'pub-2', 'pub-5', 'pub-9', 'pub-11', 'pub-17'],
+    defaultPubId: 'pub-3',
   };
 
   const spotlightPubs = useMemo(() => {
@@ -36,7 +37,7 @@ export default function ScholarFeed() {
 
   const [stats, setStats] = useState(initialStats);
   const [selectedHeroPubId, setSelectedHeroPubId] = useState(
-    spotlight.defaultPubId || spotlightPubs[0]?.id || publications[0]?.id || 'pub-1'
+    spotlight.defaultPubId || spotlightPubs[0]?.id || publications[0]?.id || 'pub-3'
   );
   const [expandedCardIds, setExpandedCardIds] = useState({});
 
@@ -56,12 +57,7 @@ export default function ScholarFeed() {
   const activeHeroPub = spotlightPubs.find((p) => p.id === selectedHeroPubId) || spotlightPubs[0] || publications[0];
 
   const getArticleScholarUrl = (pub) => {
-    if (!pub) return scholarData.scholarProfileUrl || 'https://scholar.google.com/citations?user=CcARsGgAAAAJ&hl=en';
-    if (pub.scholarUrl && !pub.scholarUrl.includes('citations?user=') && !pub.scholarUrl.includes('K7Z5J2UAAAAJ')) {
-      return pub.scholarUrl;
-    }
-    const cleanTitle = (pub.title || '').replace(/["']/g, '');
-    return `https://scholar.google.com/scholar?q=${encodeURIComponent('"' + cleanTitle + '"')}`;
+    return buildArticleScholarUrl(pub);
   };
 
   // Sync state if CMS updates stats or publications
@@ -71,18 +67,18 @@ export default function ScholarFeed() {
     }
   }, [scholarData.stats]);
 
-  // Live Sync button simulation with academic metadata refresh
-  const handleLiveSync = () => {
+  // Live Sync trigger with academic API service
+  const handleLiveSync = async () => {
     setIsSyncing(true);
-    setTimeout(() => {
+    try {
+      const updated = await syncScholarData(stats);
+      setStats(updated);
+      setLastSyncTime(updated.lastUpdated);
+    } catch (e) {
+      console.error('Failed to sync scholar data', e);
+    } finally {
       setIsSyncing(false);
-      const now = new Date();
-      setLastSyncTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-      setStats((prev) => ({
-        ...prev,
-        totalCitations: prev.totalCitations + (Math.random() > 0.6 ? 1 : 0),
-      }));
-    }, 1200);
+    }
   };
 
   const handleCopyBibtex = (pub) => {
@@ -91,7 +87,10 @@ export default function ScholarFeed() {
     setTimeout(() => setCopiedId(null), 2500);
   };
 
-  const categories = ['All', 'Retina & Vitreous', 'Pediatric Ophthalmology', 'Books & Guidelines', 'Inflammatory & Oncology'];
+  const categories = useMemo(() => {
+    const cSet = new Set(publications.map((p) => p.category).filter(Boolean));
+    return ['All', ...Array.from(cSet)];
+  }, [publications]);
 
   const years = useMemo(() => {
     const ySet = new Set(publications.map((p) => p.year?.toString()).filter(Boolean));
@@ -124,9 +123,15 @@ export default function ScholarFeed() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-800/60 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
-              <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{scholarData.badge || 'Real-Time Academic Feeds'}</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-800/60 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+                <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+                <span>{scholarData.badge || 'Real-Time Academic Feeds'}</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-medium">
+                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                <span>2015 – 2026 (Present)</span>
+              </div>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-serif tracking-tight">
               Google Scholar & <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-300">Scientific Feeds</span>
@@ -163,10 +168,10 @@ export default function ScholarFeed() {
             <div className="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight font-serif flex items-center gap-2">
               {stats.totalCitations}
               <span className="text-xs font-sans px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 font-semibold">
-                +18 this yr
+                +71 latest
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">Google Scholar Indexed</p>
+            <p className="text-[11px] text-slate-400 mt-1">Google Scholar (2015–2026)</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-700/50 transition-all">
@@ -182,7 +187,7 @@ export default function ScholarFeed() {
             <div className="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight font-serif">
               {stats.i10Index}
             </div>
-            <p className="text-[11px] text-cyan-400 mt-1">Papers with ≥ 10 citations</p>
+            <p className="text-[11px] text-cyan-400 mt-1">15 Papers with ≥ 10 citations</p>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-sm relative overflow-hidden group hover:border-cyan-700/50 transition-all">
@@ -190,7 +195,7 @@ export default function ScholarFeed() {
             <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1 tracking-tight font-serif">
               5982903
             </div>
-            <p className="text-[11px] text-amber-300/80 mt-1">Kemendikbudristek RI</p>
+            <p className="text-[11px] text-amber-300/80 mt-1">Score: 352 • Kemdiktisaintek RI</p>
           </div>
         </div>
 
